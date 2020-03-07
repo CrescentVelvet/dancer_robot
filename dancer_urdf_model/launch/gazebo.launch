@@ -1,0 +1,100 @@
+<launch>
+
+<!-- gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find dancer_urdf_model)/worlds/dancer_world.world"/>
+  </include>
+<!--
+    <arg name="world_name" value="$(find dancer_urdf_model)/worlds/dancer_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+-->
+
+<!-- robot -->
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find dancer_urdf_model)/robots/dancer_urdf_model.xacro'" />
+<!--
+    textfile="$(find dancer_urdf_model)/robots/dancer_urdf_model.URDF" 
+    command="$(find xacro)/xacro - -inorder '$(find dancer_urdf_model)/robots/dancer_urdf_model.xacro'"
+-->
+<!--
+  <param
+    name="use_gui" value="true" />
+-->
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" />
+
+  <node
+    name="dancer_spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0.5 -R -1.57 -P 0 -Y 0"
+    output="screen" />
+<!--
+    args="-file $(find dancer_urdf_model)/robots/dancer_urdf_model.URDF -urdf -model dancer_urdf_model"
+    args="-urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 0"
+-->
+
+  <include
+    file="$(find pr2_controller_manager)/controller_manager.launch" />
+
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+  <rosparam 
+    file="$(find dancer_urdf_model)/config/dancer_control.yaml" 
+    command="load"/>
+
+  <node 
+    name="joint_controller_spawner" 
+    pkg="controller_manager" 
+    type="spawner" 
+    respawn="false"
+    output="screen" 
+    ns="/dancer_urdf_model" 
+    args="joint_state_controller 
+          joint_body_head_controller 
+          joint_body_head2_controller
+          joint_arm_left_controller
+          joint_hand_left_controller
+          joint_arm_right_controller
+          joint_hand_right_controller
+          joint_body_hip_left_controller
+          joint_body_hip2_left_controller
+          joint_leg_left_controller
+          joint_leg2_left_controller
+          joint_leg3_left_controller
+          joint_leg4_left_controller
+          joint_body_hip_right_controller
+          joint_body_hip2_right_controller
+          joint_leg_right_controller
+          joint_leg2_right_controller
+          joint_leg3_right_controller
+          joint_leg4_right_controller" />
+
+  <node name="dancer_joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+
+  <node name="dancer_robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" >
+    <remap from="/joint_states" to="/dancer_urdf_model/joint_states" />
+  </node>
+
+  <node name="dancer_keyboard_control"
+    pkg="dancer_keyboard"
+    type="dancer_keyboard.py"
+    output="screen" />
+
+</launch>

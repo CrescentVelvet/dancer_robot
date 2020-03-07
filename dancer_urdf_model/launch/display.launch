@@ -1,0 +1,30 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="True" />
+  <param
+    name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find dancer_urdf_model)/robots/dancer_urdf_model.xacro'" />
+<!--
+    textfile="$(find dancer_urdf_model)/robots/dancer_urdf_model.URDF" 
+    command="$(find xacro)/xacro - -inorder '$(find dancer_urdf_model)/robots/dancer_urdf_model.xacro'"
+-->
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find dancer_urdf_model)/textures/urdf.rviz" />
+</launch>

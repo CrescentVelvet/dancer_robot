@@ -1,0 +1,6 @@
+<package>
+  <description brief="dancer_urdf_model">dancer_urdf_model</description>
+  <depend package="gazebo" />
+  <author>me</author>
+  <license>BSD</license>
+</package>
