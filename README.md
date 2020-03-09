@@ -62,3 +62,14 @@ roslaunch dancer_urdf_model gazebo.launch
 
         'n'         # leg4_right
 
+# 可能报错
+```
+sudo apt-get install ros-melodic-effort-controllers
+sudo apt-get install ros-melodic-joint-state-publisher-gui
+sudo apt-get install ros-melodic-gazebo-ros-control
+sudo apt-get install ros-melodic-effort-controllers
+sudo apt-get install ros-melodic-fake-localization
+sudo apt-get install ros-melodic-pr2-controller-manager
+killall gzserver
+```
+
