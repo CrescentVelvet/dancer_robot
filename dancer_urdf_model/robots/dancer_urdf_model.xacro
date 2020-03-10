@@ -1176,106 +1176,127 @@
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Gray</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_head">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_head2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="arm_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="hand_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="arm_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="hand_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_hip">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_hip_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_hip2_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg2_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg3_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg4_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_hip_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_hip2_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg2_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg3_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
      <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="leg4_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <turnGravityoff>false</turnGravityoff>
   </gazebo>
   <gazebo reference="body_camera">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Red</material>
+    <turnGravityoff>false</turnGravityoff>
     <sensor type="camera" name="camera1">
       <always_on>1</always_on>
       <updateRate>30.0</updateRate>

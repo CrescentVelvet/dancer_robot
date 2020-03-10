@@ -80,7 +80,8 @@
           joint_leg_right_controller
           joint_leg2_right_controller
           joint_leg3_right_controller
-          joint_leg4_right_controller" />
+          joint_leg4_right_controller
+          joint_body_hip_controller" />
 
   <node name="dancer_joint_state_publisher"
     pkg="joint_state_publisher"

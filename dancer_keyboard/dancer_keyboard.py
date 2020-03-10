@@ -87,13 +87,13 @@ def getKey():
     return key
 
 def robot_1(body_head, body_head2, arm_left, hand_left, arm_right, hand_right):
-    return "body_head: %s\t body_head2: %s\t arm_left: %s\t hand_left: %s\t arm_right %s\t hand_right %s" % (body_head, body_head2, arm_left, hand_left, arm_right, hand_right)
+    return " body_head: %s\t body_head2: %s\n arm_left: %s\t hand_left: %s\n arm_right %s\t hand_right %s" % (body_head, body_head2, arm_left, hand_left, arm_right, hand_right)
 
 def robot_2(body_hip_left, body_hip2_left, leg_left, leg2_left, leg3_left, leg4_left):
-    return "body_hip_left: %s\t body_hip2_left: %s\t leg_left: %s\t leg2_left: %s\t leg3_left %s\t leg4_left %s" % (body_hip_left, body_hip2_left, leg_left, leg2_left, leg3_left, leg4_left)
+    return " body_hip_left: %s\t body_hip2_left: %s\n leg_left: %s\t leg2_left: %s\t leg3_left %s\t leg4_left %s" % (body_hip_left, body_hip2_left, leg_left, leg2_left, leg3_left, leg4_left)
 
 def robot_3(body_hip_right, body_hip2_right, leg_right, leg2_right, leg3_right, leg4_right):
-    return "body_hip_right: %s\t body_hip2_right: %s\t leg_right: %s\t leg2_right: %s\t leg3_right %s\t leg4_right %s" % (body_hip_right, body_hip2_right, leg_right, leg2_right, leg3_right, leg4_right)
+    return " body_hip_right: %s\t body_hip2_right: %s\n leg_right: %s\t leg2_right: %s\t leg3_right %s\t leg4_right %s" % (body_hip_right, body_hip2_right, leg_right, leg2_right, leg3_right, leg4_right)
 
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
@@ -118,32 +118,36 @@ if __name__=="__main__":
     pub_leg2_right       = rospy.Publisher('/dancer_urdf_model/joint_leg2_right_controller/command',       Float64, queue_size = 1)
     pub_leg3_right       = rospy.Publisher('/dancer_urdf_model/joint_leg3_right_controller/command',       Float64, queue_size = 1)
     pub_leg4_right       = rospy.Publisher('/dancer_urdf_model/joint_leg4_right_controller/command',       Float64, queue_size = 1)
-
+#4
+    pub_body_hip = rospy.Publisher('/dancer_urdf_model/joint_body_hip_controller/command',Float64, queue_size = 1)
     rospy.init_node('dancer_keyboard')
 #1
-    body_head  = 0
-    body_head2 = 1.5
-    arm_left   = 1.68
-    hand_left  = 3.14
-    arm_right  = 0.10
-    hand_right = -2.62
+    body_head  = -0.05
+    body_head2 =  0.00
+    arm_left   =  1.72
+    hand_left  =  0.14
+    arm_right  =  0.10
+    hand_right =  0.39
 #2
-    body_hip_left  = 0
-    body_hip2_left = -0.11
-    leg_left       = -1.74
-    leg2_left      = 1.00
-    leg3_left      = -0.17
-    leg4_left      = 0.41
+    body_hip_left  = -0.06
+    body_hip2_left = -0.14
+    leg_left       = -1.68
+    leg2_left      =  1.05
+    leg3_left      = -0.25
+    leg4_left      =  0.41
 #3
-    body_hip_right  = 0.11
-    body_hip2_right = -0.66
-    leg_right       = 0.47
-    leg2_right      = 0.88
-    leg3_right      = -0.94
-    leg4_right      = -1.10
+    body_hip_right  =  0.05
+    body_hip2_right = -0.83
+    leg_right       =  0.55
+    leg2_right      =  0.93
+    leg3_right      = -0.90
+    leg4_right      = -1.00
+#4
+    body_hip = 0.00
 
     try:
         print(msg)
+        print("----------")
         print(robot_1(body_head, body_head2, arm_left, hand_left, arm_right, hand_right))
         print(robot_2(body_hip_left, body_hip2_left, leg_left, leg2_left, leg3_left, leg4_left))
         print(robot_3(body_hip_right, body_hip2_right, leg_right, leg2_right, leg3_right, leg4_right))
@@ -260,6 +264,9 @@ if __name__=="__main__":
             pub_leg3_right.publish(float64)
             float64.data = leg4_right
             pub_leg4_right.publish(float64)
+#4
+            float64.data = body_hip
+            pub_body_hip.publish(float64)
 
     except Exception as e:
         print(e)
@@ -305,5 +312,8 @@ if __name__=="__main__":
         pub_leg3_right.publish(float64)
         float64.data = 0
         pub_leg4_right.publish(float64)
+#4
+        float64.data = 0
+        pub_body_hip.publish(float64)
 
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
