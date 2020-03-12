@@ -163,85 +163,98 @@ if __name__=="__main__":
         time.sleep(10)
         print("----------")
         print("Init start  : %s" % time.ctime())
+
+        # 读取数据
         f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
+        init_flag = 1 # 让竖直躺平sleep久一点
         line_string = f.readline()
-        #print(line_string)#提取一行数据
-        line_str = line_string.split(' ')
-        while '' in line_str:
-            line_str.remove('')
-        line_str.pop(-1) # 删除时间戳
-        line_data = list(map(float,line_str))
-        # 角度制转换弧度制
-        for index in range(len(line_data)):
-            line_data[index] = math.radians(line_data[index])
+        while line_string:
 
-        #print(raw_init_joint_rad)
-        #print(real_init_joint_rad)
-        #print(f)#拿到原始数据
-        #print(line_str)#转换为str数组
-        #print(line_data)#转换为float数组
+            # 读取
+            line_str = line_string.split(' ')
+            while '' in line_str:
+                line_str.remove('')
+            line_str.pop(-1) # 删除时间戳
+            line_data = list(map(float,line_str))
+            # 角度制转换弧度制
+            for index in range(len(line_data)):
+                line_data[index] = math.radians(line_data[index])
 
-        # 赋值
-        body_hip_right = real_init_joint_rad[0] + line_data[0]
-        body_hip2_right = real_init_joint_rad[1] + line_data[1]
-        leg_right = real_init_joint_rad[2] + line_data[2]
-        leg2_right = real_init_joint_rad[3] + line_data[3]
-        leg3_right = real_init_joint_rad[4] + line_data[4]
-        leg4_right = real_init_joint_rad[5] + line_data[5]
-        body_hip_left = real_init_joint_rad[6] + line_data[6]
-        body_hip2_left = real_init_joint_rad[7] + line_data[7]
-        leg_left = real_init_joint_rad[8] + line_data[8]
-        leg2_left = real_init_joint_rad[9] + line_data[9]
-        leg3_left = real_init_joint_rad[10] + line_data[10]
-        leg4_left = real_init_joint_rad[11] + line_data[11]
-        arm_right = real_init_joint_rad[12] + line_data[12]
-        hand_right = real_init_joint_rad[13] + line_data[13]
-        arm_left = real_init_joint_rad[14] + line_data[14]
-        hand_left = real_init_joint_rad[15] + line_data[15]
+            #print(raw_init_joint_rad)
+            #print(real_init_joint_rad)
+            #print(f)#拿到原始数据
+            #print(line_string)#提取一行数据
+            #print(line_str)#转换为str数组
+            #print(line_data)#转换为float数组
 
-        control_msg = Float64()
-#3
-        control_msg.data = body_hip_right
-        pub_body_hip_right.publish(control_msg)
-        control_msg.data = body_hip2_right
-        pub_body_hip2_right.publish(control_msg)
-        control_msg.data = leg_right
-        pub_leg_right.publish(control_msg)
-        control_msg.data = leg2_right
-        pub_leg2_right.publish(control_msg)
-        control_msg.data = leg3_right
-        pub_leg3_right.publish(control_msg)
-        control_msg.data = leg4_right
-        pub_leg4_right.publish(control_msg)
-#2
-        control_msg.data = body_hip_left
-        pub_body_hip_left.publish(control_msg)
-        control_msg.data = body_hip2_left
-        pub_body_hip2_left.publish(control_msg)
-        control_msg.data = leg_left
-        pub_leg_left.publish(control_msg)
-        control_msg.data = leg2_left
-        pub_leg2_left.publish(control_msg)
-        control_msg.data = leg3_left
-        pub_leg3_left.publish(control_msg)
-        control_msg.data = leg4_left
-        pub_leg4_left.publish(control_msg)
-#1
-        control_msg.data = arm_left
-        pub_arm_left.publish(control_msg)
-        control_msg.data = hand_left
-        pub_hand_left.publish(control_msg)
-        control_msg.data = arm_right
-        pub_arm_right.publish(control_msg)
-        control_msg.data = hand_right
-        pub_hand_right.publish(control_msg)
-#4
-        control_msg.data = body_head
-        pub_body_head.publish(control_msg)
-        control_msg.data = body_head2
-        pub_body_head2.publish(control_msg)
-        control_msg.data = body_hip
-        pub_body_hip.publish(control_msg)
+            # 赋值
+            body_hip_right = real_init_joint_rad[0] + line_data[0]
+            body_hip2_right = real_init_joint_rad[1] + line_data[1]
+            leg_right = real_init_joint_rad[2] + line_data[2]
+            leg2_right = real_init_joint_rad[3] + line_data[3]
+            leg3_right = real_init_joint_rad[4] + line_data[4]
+            leg4_right = real_init_joint_rad[5] + line_data[5]
+            body_hip_left = real_init_joint_rad[6] + line_data[6]
+            body_hip2_left = real_init_joint_rad[7] + line_data[7]
+            leg_left = real_init_joint_rad[8] + line_data[8]
+            leg2_left = real_init_joint_rad[9] + line_data[9]
+            leg3_left = real_init_joint_rad[10] + line_data[10]
+            leg4_left = real_init_joint_rad[11] + line_data[11]
+            arm_right = real_init_joint_rad[12] + line_data[12]
+            hand_right = real_init_joint_rad[13] + line_data[13]
+            arm_left = real_init_joint_rad[14] + line_data[14]
+            hand_left = real_init_joint_rad[15] + line_data[15]
+
+            # 发送
+            control_msg = Float64()
+            #3
+            control_msg.data = body_hip_right
+            pub_body_hip_right.publish(control_msg)
+            control_msg.data = body_hip2_right
+            pub_body_hip2_right.publish(control_msg)
+            control_msg.data = leg_right
+            pub_leg_right.publish(control_msg)
+            control_msg.data = leg2_right
+            pub_leg2_right.publish(control_msg)
+            control_msg.data = leg3_right
+            pub_leg3_right.publish(control_msg)
+            control_msg.data = leg4_right
+            pub_leg4_right.publish(control_msg)
+            #2
+            control_msg.data = body_hip_left
+            pub_body_hip_left.publish(control_msg)
+            control_msg.data = body_hip2_left
+            pub_body_hip2_left.publish(control_msg)
+            control_msg.data = leg_left
+            pub_leg_left.publish(control_msg)
+            control_msg.data = leg2_left
+            pub_leg2_left.publish(control_msg)
+            control_msg.data = leg3_left
+            pub_leg3_left.publish(control_msg)
+            control_msg.data = leg4_left
+            pub_leg4_left.publish(control_msg)
+            #1
+            control_msg.data = arm_left
+            pub_arm_left.publish(control_msg)
+            control_msg.data = hand_left
+            pub_hand_left.publish(control_msg)
+            control_msg.data = arm_right
+            pub_arm_right.publish(control_msg)
+            control_msg.data = hand_right
+            pub_hand_right.publish(control_msg)
+            #4
+            control_msg.data = body_head
+            pub_body_head.publish(control_msg)
+            control_msg.data = body_head2
+            pub_body_head2.publish(control_msg)
+            control_msg.data = body_hip
+            pub_body_hip.publish(control_msg)
+  
+            time.sleep(0.01) # 间隔10ms
+            if init_flag:
+                time.sleep(3)
+                init_flag = 0
+            line_string = f.readline()
 
         f.close()
 
