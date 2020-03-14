@@ -3,6 +3,7 @@
   name="dancer_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="dam" value="0.0"/>
   <xacro:property name="fri" value="10.0"/>
+  <xacro:property name="mass_multi" value="1.0"/>
 <!-- root link -->
   <link 
     name="world_link">
@@ -20,7 +21,7 @@
         xyz="-0.39529 -0.25795 -0.0041722"
         rpy="0 0 0" />
       <mass
-        value="0.66907" />
+        value="${0.66907 * mass_multi}" />
       <inertia
         ixx="0.004463976"
         ixy="-2.3195E-05"
@@ -60,7 +61,7 @@
         xyz="-0.000351851554432403 -0.0159432418124996 -6.20136945961303E-09"
         rpy="0 0 0" />
       <mass
-        value="0.0560380421735799" />
+        value="${0.0560380421735799 * mass_multi}" />
       <inertia
         ixx="6.80542660516315E-06"
         ixy="2.52790190769969E-07"
@@ -116,7 +117,7 @@
         xyz="-0.020399 -0.025987 -0.047171"
         rpy="0 0 0" />
       <mass
-        value="0.067365" />
+        value="${0.067365 * mass_multi}" />
       <inertia
         ixx="2.0873E-05"
         ixy="2.2756E-10"
@@ -172,7 +173,7 @@
         xyz="0.00185814795587239 -0.0815728051955473 0.0294005743652034"
         rpy="0 0 0" />
       <mass
-        value="0.142976459032186" />
+        value="${0.142976459032186 * mass_multi}" />
       <inertia
         ixx="2.49420588469075E-04"
         ixy="7.32525652321763E-06"
@@ -228,7 +229,7 @@
         xyz="-0.00150000000000006 0.0513998176588075 -0.0471166731147821"
         rpy="0 0 0" />
       <mass
-        value="0.021948273112724" />
+        value="${0.021948273112724 * mass_multi}" />
       <inertia
         ixx="1.788488E-04"
         ixy="1.5091E-06"
@@ -284,7 +285,7 @@
         xyz="0.00187545595097149 -0.0810657497418857 0.0317817660201292"
         rpy="0 0 0" />
       <mass
-        value="0.141656759847187" />
+        value="${0.141656759847187 * mass_multi}" />
       <inertia
         ixx="2.44964545549609E-04"
         ixy="7.19058779167484E-06"
@@ -340,7 +341,7 @@
         xyz="-0.00150000000000061 -0.0550818675496146 -0.0427540642279834"
         rpy="0 0 0" />
       <mass
-        value="0.021948273112724" />
+        value="${0.021948273112724 * mass_multi}" />
       <inertia
         ixx="1.442092E-04"
         ixy="-1.4346E-06"
@@ -396,7 +397,7 @@
         xyz="0.000157245394557526 0.0183365350270815 0.0512514015755213"
         rpy="0 0 0" />
       <mass
-        value="0.220741166410594" />
+        value="${0.220741166410594 * mass_multi}" />
       <inertia
         ixx="8.47561E-04"
         ixy="-2.48E-07"
@@ -452,7 +453,7 @@
         xyz="0.020727573256466 0.00401171130451616 -0.000185064805642399"
         rpy="0 0 0" />
       <mass
-        value="0.0513468076618724" />
+        value="${0.0513468076618724 * mass_multi}" />
       <inertia
         ixx="3.0932E-05"
         ixy="5.169E-06"
@@ -508,7 +509,7 @@
         xyz="-0.05214771499803 -0.0126151296156827 0.000799339990500914"
         rpy="0 0 0" />
       <mass
-        value="0.178226116015845" />
+        value="${0.178226116015845 * mass_multi}" />
       <inertia
         ixx="1.44373E-04"
         ixy="2.00004E-04"
@@ -564,7 +565,7 @@
         xyz="-0.0239762815919513 0.0733271184441349 -0.0492320368464383"
         rpy="0 0 0" />
       <mass
-        value="0.117898503490257" />
+        value="${0.117898503490257 * mass_multi}" />
       <inertia
         ixx="1.493574E-03"
         ixy="-2.86808E-04"
@@ -620,7 +621,7 @@
         xyz="-0.0235000000000001 0.0561541813174893 0.0270927391440708"
         rpy="0 0 0" />
       <mass
-        value="0.0278306854029525" />
+        value="${0.0278306854029525 * mass_multi}" />
       <inertia
         ixx="1.48269E-04"
         ixy="-3.4191E-05"
@@ -676,7 +677,7 @@
         xyz="-0.0240177949022405 -0.00952681182363596 -0.0183477774983369"
         rpy="0 0 0" />
       <mass
-        value="0.177450614870689" />
+        value="${0.177450614870689 * mass_multi}" />
       <inertia
         ixx="3.75156E-04"
         ixy="6.1747E-05"
@@ -732,7 +733,7 @@
         xyz="0.00686471247682141 -0.0384681270411728 0.0369568564087829"
         rpy="0 0 0" />
       <mass
-        value="0.13465253780049" />
+        value="${0.13465253780049 * mass_multi}" />
       <inertia
         ixx="6.9952E-04"
         ixy="-3.8103E-05"
@@ -788,7 +789,7 @@
         xyz="0.00360506662341747 0.00176962459685462 0.0179275732564661"
         rpy="0 0 0" />
       <mass
-        value="0.0513468076618724" />
+        value="${0.0513468076618724 * mass_multi}" />
       <inertia
         ixx="3.6027E-05"
         ixy="7.945E-06"
@@ -844,7 +845,7 @@
         xyz="-0.05274771645541 -0.00922434933235092 0.00864247622548692"
         rpy="0 0 0" />
       <mass
-        value="0.178226118022815" />
+        value="${0.178226118022815 * mass_multi}" />
       <inertia
         ixx="1.44373E-04"
         ixy="1.48828E-04"
@@ -900,7 +901,7 @@
         xyz="-0.0282237184526358 -0.0161687157017971 -0.0868287422428667"
         rpy="0 0 0" />
       <mass
-        value="0.117898502766572" />
+        value="${0.117898502766572 * mass_multi}" />
       <inertia
         ixx="1.493573E-03"
         ixy="7.188E-05"
@@ -956,7 +957,7 @@
         xyz="-0.0264999999999997 -0.0557112176708658 -0.0279922992874042"
         rpy="0 0 0" />
       <mass
-        value="0.0278306854029525" />
+        value="${0.0278306854029525 * mass_multi}" />
       <inertia
         ixx="1.48269E-04"
         ixy="3.7651E-05"
@@ -1012,7 +1013,7 @@
         xyz="-0.0265822088686737 0.0182514148314177 0.00971017334244767"
         rpy="0 0 0" />
       <mass
-        value="0.177450615338578" />
+        value="${0.177450615338578 * mass_multi}" />
       <inertia
         ixx="3.75156E-04"
         ixy="-1.36115E-04"
@@ -1068,7 +1069,7 @@
         xyz="0.0069030606371967 -0.0385611288608892 0.0368864105375638"
         rpy="0 0 0" />
       <mass
-        value="0.133904507779755" />
+        value="${0.133904507779755 * mass_multi}" />
       <inertia
         ixx="6.95451E-04"
         ixy="-3.8103E-05"
@@ -1125,7 +1126,7 @@
         xyz="-0.000405776775139921 -0.0107849933603513 0.0157740430047439"
         rpy="0 -1.5708 0" />
       <mass
-        value="0.00912844677087833" />
+        value="${0.00912844677087833 * mass_multi}" />
       <inertia
         ixx="0"
         ixy="0"
@@ -1176,127 +1177,146 @@
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Gray</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_head">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_head2">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="arm_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="hand_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="arm_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="hand_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_hip">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Green</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_hip_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_hip2_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg2_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg3_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Blue</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg4_left">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_hip_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_hip2_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg2_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg3_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
      <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="leg4_right">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Black</material>
+    <gravity>true</gravity>
     <!--<turnGravityoff>false</turnGravityoff>-->
   </gazebo>
   <gazebo reference="body_camera">
     <mu1>0.2</mu1>
     <mu2>0.2</mu2>
     <material>Gazebo/Red</material>
-    <!--<turnGravityoff>false</turnGravityoff>-->
     <sensor type="camera" name="camera1">
       <always_on>true</always_on>
       <!--<updateRate>30.0</updateRate>-->

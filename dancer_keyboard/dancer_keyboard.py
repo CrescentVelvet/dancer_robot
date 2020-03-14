@@ -11,9 +11,9 @@ import time
 import math
 
 # 16个关节的原版初始值
-raw_init_joint_rad = (0.05, -0.83, 0.55, 0.93, -0.90, -1.00, -0.06, -0.14, -1.68, 1.05, -0.25, 0.41, 0.10, 0.39, 1.72, 0.14)
+raw_init_joint_rad = (0.05, -0.83, 0.55, 0.93, -2.40, -1.00, -0.06, -0.14, -1.68, 1.05, -1.73, 0.41, 0.10, 0.39, 1.72, 0.14)
 # 16个关节的小仿初始值
-real_init_joint_rad = (0.0, 0.0, -0.17410689032902116, 0.6189618205980171, 1.6735735304570867, 0.0, 0.0, 0.0, -0.17410689032902116, 0.6189618205980171, 1.6735735304570867, 0.0, -0.8620966573763391, 2.5072876435374942, -0.8620966573763391, 2.5072876435374942)
+real_init_joint_rad = (0.0, 0.0, 0.9863501374843194, 1.0960301183381471, -0.9150202762845632, 0.0, 0.0, 0.0, 0.9863501374843194, 1.0960301183381471, -0.9150202762845632, 0.0, -2.3025081624009993, 1.9627274636227432, -2.3025081624009993, -1 * 1.9627274636227432)
 real_init_joint_rad = list(real_init_joint_rad)
 # 用原版初始值减去小仿初始值
 for index in range(len(raw_init_joint_rad)):
@@ -156,16 +156,16 @@ if __name__=="__main__":
     (body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_left,hand_left,arm_right,hand_right) = raw_init_joint_rad
     try:
         print(msg)
-        print("----------")
-        print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
-        print("----------")
+        #print("----------")
+        #print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
+        #print("----------")
         # 执行机器人从躺平爬起来的动作(注意关节顺序有改动)
         time.sleep(10)
         print("----------")
         print("Init start  : %s" % time.ctime())
 
         # 读取数据
-        f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
+        f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/back_climb.txt","r")
         init_flag = 1 # 让竖直躺平sleep久一点
         line_string = f.readline()
         while line_string:
@@ -188,22 +188,22 @@ if __name__=="__main__":
             #print(line_data)#转换为float数组
 
             # 赋值
-            body_hip_right = real_init_joint_rad[0] + line_data[0]
-            body_hip2_right = real_init_joint_rad[1] + line_data[1]
-            leg_right = real_init_joint_rad[2] + line_data[2]
-            leg2_right = real_init_joint_rad[3] + line_data[3]
-            leg3_right = real_init_joint_rad[4] + line_data[4]
-            leg4_right = real_init_joint_rad[5] + line_data[5]
-            body_hip_left = real_init_joint_rad[6] + line_data[6]
-            body_hip2_left = real_init_joint_rad[7] + line_data[7]
-            leg_left = real_init_joint_rad[8] + line_data[8]
-            leg2_left = real_init_joint_rad[9] + line_data[9]
-            leg3_left = real_init_joint_rad[10] + line_data[10]
-            leg4_left = real_init_joint_rad[11] + line_data[11]
-            arm_right = real_init_joint_rad[12] + line_data[12]
-            hand_right = real_init_joint_rad[13] + line_data[13]
-            arm_left = real_init_joint_rad[14] + line_data[14]
-            hand_left = real_init_joint_rad[15] + line_data[15]
+            body_hip_right  = real_init_joint_rad[0]  + line_data[0]
+            body_hip2_right = real_init_joint_rad[1]  + line_data[1]
+            leg_right       = real_init_joint_rad[2]  + line_data[2]
+            leg2_right      = real_init_joint_rad[3]  + line_data[3]
+            leg3_right      = real_init_joint_rad[4]  + line_data[4]
+            leg4_right      = real_init_joint_rad[5]  + line_data[5]
+            body_hip_left   = real_init_joint_rad[6]  + line_data[6]
+            body_hip2_left  = real_init_joint_rad[7]  + line_data[7]
+            leg_left        = real_init_joint_rad[8]  + line_data[8]
+            leg2_left       = real_init_joint_rad[9]  + line_data[9]
+            leg3_left       = real_init_joint_rad[10] + line_data[10]
+            leg4_left       = real_init_joint_rad[11] + line_data[11]
+            arm_right       = real_init_joint_rad[12] + line_data[12]
+            hand_right      = real_init_joint_rad[13] + line_data[13]
+            arm_left        = real_init_joint_rad[14] + line_data[14]
+            hand_left       = real_init_joint_rad[15] - line_data[15]
 
             # 发送
             control_msg = Float64()
@@ -253,6 +253,10 @@ if __name__=="__main__":
             time.sleep(0.01) # 间隔10ms
             if init_flag:
                 time.sleep(3)
+                #print("init data")
+                #print(line_data)
+                #print("init state")
+                #print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
                 init_flag = 0
             line_string = f.readline()
 
@@ -262,8 +266,6 @@ if __name__=="__main__":
         print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
         print("Init finish : %s" % time.ctime())
         print("----------")
-
-
 
 
         # 反复循环键盘控制机器人关节运动
