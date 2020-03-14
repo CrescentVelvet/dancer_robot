@@ -152,5 +152,6 @@
       </link>
       <static>1</static>
     </model>
+    <gravity>0 0 -98</gravity>
   </world>
 </sdf>

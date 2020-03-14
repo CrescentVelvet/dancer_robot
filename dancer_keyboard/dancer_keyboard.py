@@ -160,7 +160,7 @@ if __name__=="__main__":
         #print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
         #print("----------")
         # 执行机器人从躺平爬起来的动作(注意关节顺序有改动)
-        time.sleep(10)
+        time.sleep(6)
         print("----------")
         print("Init start  : %s" % time.ctime())
 
