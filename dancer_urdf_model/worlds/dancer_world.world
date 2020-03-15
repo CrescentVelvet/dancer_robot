@@ -120,7 +120,6 @@
         </visual>
         <pose frame=''>-5 -2 0 0 0 0</pose>
       </link>
-
       <link name='column_up'>
         <collision name='column_up_Collision'>
           <geometry>
@@ -152,6 +151,6 @@
       </link>
       <static>1</static>
     </model>
-    <gravity>0 0 -98</gravity>
+    <gravity>0 0 -298</gravity>
   </world>
 </sdf>
