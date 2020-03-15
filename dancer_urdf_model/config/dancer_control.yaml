@@ -9,27 +9,27 @@ dancer_urdf_model:
   joint_body_head_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_head
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_body_head2_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_head2
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_arm_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_arm_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_hand_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_hand_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_arm_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_arm_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_hand_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_hand_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
 #2
   joint_body_hip_left_controller:
     type: effort_controllers/JointPositionController
