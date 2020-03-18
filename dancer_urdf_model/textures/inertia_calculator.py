@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 # -*- coding: utf-8 -*
+print("计算得到")
 mass = input("mass value = ")
 print(mass)
 x = input("x = ")
@@ -20,13 +21,13 @@ iyz = mass*(y*z)*(0.25)
 print("      <inertia")
 temp = '        ixx="' + str(ixx) + '"'
 print(temp)
-temp = '        ixy="' + str(ixy) + '"'
+temp = '        ixy="' + '0' + '"'
 print(temp)
-temp = '        ixz="' + str(ixz) + '"'
+temp = '        ixz="' + '0' + '"'
 print(temp)
 temp = '        iyy="' + str(iyy) + '"'
 print(temp)
-temp = '        iyz="' + str(iyz) + '"'
+temp = '        iyz="' + '0' + '"'
 print(temp)
-temp = '        izz="' + str(izz) + '"'
+temp = '        izz="' + str(izz) + '"' + ' />'
 print(temp)

@@ -30,58 +30,58 @@ dancer_urdf_model:
     type: effort_controllers/JointPositionController
     joint: joint_hand_right
     pid: {p: 200.0, i: 0.01, d: 0}
-#2
+#2s
   joint_body_hip_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_hip_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_body_hip2_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_hip2_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg2_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg2_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg3_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg3_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg4_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg4_left
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
 #3
   joint_body_hip_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_hip_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_body_hip2_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_hip2_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg2_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg2_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg3_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg3_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
   joint_leg4_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg4_right
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
 #4
   joint_body_hip_controller:
     type: effort_controllers/JointPositionController
     joint: joint_body_hip
-    pid: {p: 100.0, i: 0.01, d: 0}
+    pid: {p: 200.0, i: 0.01, d: 0}
