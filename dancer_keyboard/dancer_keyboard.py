@@ -11,14 +11,17 @@ import time
 import math
 
 # 16个关节的原版初始值
-raw_init_joint_rad = (0.05, -0.81, 0.55, 0.93, -0.92, -0.97, -0.06, -0.18, -1.68, 1.05, -0.25, 0.38, -3.07, -2.77, -1.43, -3.00)
+raw_init_joint_rad = (0.05, -0.83, 0.55, 0.79, -0.83, -1.08, 0.01, -0.14, -1.68, 1.05, -0.19, 0.41, 0.06, -2.76, 1.69, -2.96)
+
+zf = (1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, -1, -1, 1, -1, -1)
+# line_data = (0, 0, 49.965800, 69.257800, 32.036100, 0, 0, 0, 49.965800, 69.257800, 32.036100, 0, 47.285200, -16.215800,   47.285200, -16.215800)
+# line_data = (0, 0, -9.97559, 35.463900, 95.888700, 0, 0, 0, -9.97559, 35.463900, 95.888700, 0, -49.394500, 143.65700,  -49.394500, 143.65700)
 # 16个关节的小仿初始值
-real_init_joint_rad = (0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, 0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, -1 * -2.3025081624009993, -1 * 1.9627274636227432, -1 * -2.3025081624009993, 1 * 1.9627274636227432)
-real_init_joint_rad = list(real_init_joint_rad)
-# 用原版初始值减去小仿初始值
-for index in range(len(raw_init_joint_rad)):
-    real_init_joint_rad[index] = raw_init_joint_rad[index]
-    #real_init_joint_rad[index] = raw_init_joint_rad[index] - real_init_joint_rad[index]
+# real_init_joint_rad = (0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, 0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, -1 * -2.3025081624009993, -1 * 1.9627274636227432, -1 * -2.3025081624009993, 1 * 1.9627274636227432)
+# real_init_joint_rad = list(real_init_joint_rad)
+# # 用原版初始值减去小仿初始值
+# for index in range(len(raw_init_joint_rad)):
+#     real_init_joint_rad[index] = raw_init_joint_rad[index] - real_init_joint_rad[index]
 
 msg = """
 
@@ -154,7 +157,8 @@ if __name__=="__main__":
     body_head2 =  0.00
     body_hip   =  0.00
     # 初始化为竖直状态（排除了头部与腰部三个关节，剩余16个关节）
-    (body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_left,hand_left,arm_right,hand_right) = raw_init_joint_rad
+    # (body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_left,hand_left,arm_right,hand_right) = raw_init_joint_rad
+
     try:
         print(msg)
         #print("----------")
@@ -165,18 +169,18 @@ if __name__=="__main__":
         print("----------")
         print("Init start  : %s" % time.ctime())
 
-        # 读取数据
-        f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/back_climb.txt","r")
+        #读取数据
+        f = open("/home/jingxin/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
         init_flag = 1 # 让竖直躺平sleep久一点
         line_string = f.readline()
         while line_string:
-
             # 读取
             line_str = line_string.split(' ')
             while '' in line_str:
                 line_str.remove('')
             line_str.pop(-1) # 删除时间戳
             line_data = list(map(float,line_str))
+            print(line_data)
             # 角度制转换弧度制
             for index in range(len(line_data)):
                 line_data[index] = math.radians(line_data[index])
@@ -188,23 +192,24 @@ if __name__=="__main__":
             #print(line_str)#转换为str数组
             #print(line_data)#转换为float数组
 
-            # 赋值
-            body_hip_right  = real_init_joint_rad[0]  + line_data[0]
-            body_hip2_right = real_init_joint_rad[1]  + line_data[1]
-            leg_right       = real_init_joint_rad[2]  + line_data[2]#
-            leg2_right      = real_init_joint_rad[3]  - line_data[3]
-            leg3_right      = real_init_joint_rad[4]  + line_data[4]#
-            leg4_right      = real_init_joint_rad[5]  + line_data[5]#
-            body_hip_left   = real_init_joint_rad[6]  + line_data[6]
-            body_hip2_left  = real_init_joint_rad[7]  + line_data[7]
-            leg_left        = real_init_joint_rad[8]  + line_data[8]#
-            leg2_left       = real_init_joint_rad[9]  - line_data[9]
-            leg3_left       = real_init_joint_rad[10] + line_data[10]#
-            leg4_left       = real_init_joint_rad[11] + line_data[11]#
-            arm_right       = real_init_joint_rad[12] + line_data[12]#
-            hand_right      = real_init_joint_rad[13] + line_data[13]#
-            arm_left        = real_init_joint_rad[14] + line_data[14]#
-            hand_left       = real_init_joint_rad[15] - line_data[15]#
+            #赋值
+            body_hip_right  = raw_init_joint_rad[0]  + line_data[0] * zf[0]
+            body_hip2_right = raw_init_joint_rad[1]  + line_data[1] * zf[1]
+            leg_right       = raw_init_joint_rad[2]  + line_data[2] * zf[2]
+            leg2_right      = raw_init_joint_rad[3]  + line_data[3] * zf[3]
+            leg3_right      = raw_init_joint_rad[4]  + line_data[4] * zf[4]
+            leg4_right      = raw_init_joint_rad[5]  + line_data[5] * zf[5]
+            body_hip_left   = raw_init_joint_rad[6]  + line_data[6] * zf[6]
+            body_hip2_left  = raw_init_joint_rad[7]  + line_data[7] * zf[7]
+            leg_left        = raw_init_joint_rad[8]  + line_data[8] * zf[8]
+            leg2_left       = raw_init_joint_rad[9]  + line_data[9] * zf[9]
+            leg3_left       = raw_init_joint_rad[10] + line_data[10] * zf[10]
+            leg4_left       = raw_init_joint_rad[11] + line_data[11] * zf[11]
+            arm_right       = raw_init_joint_rad[12] + line_data[12] * zf[12]
+            hand_right      = raw_init_joint_rad[13] + line_data[13] * zf[13]
+            arm_left        = raw_init_joint_rad[14] + line_data[14] * zf[14]
+            hand_left       = raw_init_joint_rad[15] + line_data[15] * zf[15]
+
 
             # 发送
             control_msg = Float64()
@@ -252,12 +257,12 @@ if __name__=="__main__":
             pub_body_hip.publish(control_msg)
   
             time.sleep(0.01) # 间隔10ms
-            if init_flag:
+            if init_flag == 1:
                 time.sleep(3)
-                #print("init data")
-                #print(line_data)
-                #print("init state")
-                #print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
+                print("init data")
+                print(line_data)
+                print("init state")
+                print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
                 init_flag = 0
             line_string = f.readline()
 
@@ -268,176 +273,178 @@ if __name__=="__main__":
         print("Init finish : %s" % time.ctime())
         print("----------")
 
+# 调动作的时候可以把键盘关掉了
 
-        # 反复循环键盘控制机器人关节运动
-        while(1):
-            key = getKey()
-            if key in controlBindings.keys():
+#         # 反复循环键盘控制机器人关节运动
+#         while(1):
+#             key = getKey()
+#             if key in controlBindings.keys():
 
-                # 读取键盘输入
-#1
-                body_head  = body_head  + 0.1 * controlBindings[key][0]
-                body_head2 = body_head2 + 0.1 * controlBindings[key][1]
-                arm_left   = arm_left   + 0.1 * controlBindings[key][2]
-                hand_left  = hand_left  + 0.1 * controlBindings[key][3]
-                arm_right  = arm_right  + 0.1 * controlBindings[key][4]
-                hand_right = hand_right + 0.1 * controlBindings[key][5]
-#2
-                body_hip_left  = body_hip_left  + 0.1 * controlBindings[key][6]
-                body_hip2_left = body_hip2_left + 0.1 * controlBindings[key][7]
-                leg_left       = leg_left       + 0.1 * controlBindings[key][8]
-                leg2_left      = leg2_left      + 0.1 * controlBindings[key][9]
-                leg3_left      = leg3_left      + 0.1 * controlBindings[key][10]
-                leg4_left      = leg4_left      + 0.1 * controlBindings[key][11]
-#3
-                body_hip_right  = body_hip_right  + 0.1 * controlBindings[key][12]
-                body_hip2_right = body_hip2_right + 0.1 * controlBindings[key][13]
-                leg_right       = leg_right       + 0.1 * controlBindings[key][14]
-                leg2_right      = leg2_right      + 0.1 * controlBindings[key][15]
-                leg3_right      = leg3_right      + 0.1 * controlBindings[key][16]
-                leg4_right      = leg4_right      + 0.1 * controlBindings[key][17]
-#4
-                body_hip = body_hip
+#                 # 读取键盘输入
+# #1
+#                 body_head  = body_head  + 0.1 * controlBindings[key][0]
+#                 body_head2 = body_head2 + 0.1 * controlBindings[key][1]
+#                 arm_left   = arm_left   + 0.1 * controlBindings[key][2]
+#                 hand_left  = hand_left  + 0.1 * controlBindings[key][3]
+#                 arm_right  = arm_right  + 0.1 * controlBindings[key][4]
+#                 hand_right = hand_right + 0.1 * controlBindings[key][5]
+# #2
+#                 body_hip_left  = body_hip_left  + 0.1 * controlBindings[key][6]
+#                 body_hip2_left = body_hip2_left + 0.1 * controlBindings[key][7]
+#                 leg_left       = leg_left       + 0.1 * controlBindings[key][8]
+#                 leg2_left      = leg2_left      + 0.1 * controlBindings[key][9]
+#                 leg3_left      = leg3_left      + 0.1 * controlBindings[key][10]
+#                 leg4_left      = leg4_left      + 0.1 * controlBindings[key][11]
+# #3
+#                 body_hip_right  = body_hip_right  + 0.1 * controlBindings[key][12]
+#                 body_hip2_right = body_hip2_right + 0.1 * controlBindings[key][13]
+#                 leg_right       = leg_right       + 0.1 * controlBindings[key][14]
+#                 leg2_right      = leg2_right      + 0.1 * controlBindings[key][15]
+#                 leg3_right      = leg3_right      + 0.1 * controlBindings[key][16]
+#                 leg4_right      = leg4_right      + 0.1 * controlBindings[key][17]
+# #4
+#                 body_hip = body_hip
 
-                #回到0时保留两位小数
-#1
-                if body_head<0.0001 and body_head>-0.0001:
-                    body_head = 0.0
-                if body_head2<0.0001 and body_head2>-0.0001:
-                    body_head2 = 0.0
-                if arm_left<0.0001 and arm_left>-0.0001:
-                    arm_left = 0.0
-                if hand_left<0.0001 and hand_left>-0.0001:
-                    hand_left = 0.0
-                if arm_right<0.0001 and arm_right>-0.0001:
-                    arm_right = 0.0
-                if hand_right<0.0001 and hand_right>-0.0001:
-                    hand_right = 0.0
-#2
-                if body_hip_left<0.0001 and body_hip_left>-0.0001:
-                    body_hip_left = 0.0
-                if body_hip2_left<0.0001 and body_hip2_left>-0.0001:
-                    body_hip2_left = 0.0
-                if leg_left<0.0001 and leg_left>-0.0001:
-                    leg_left = 0.0
-                if leg2_left<0.0001 and leg2_left>-0.0001:
-                    leg2_left = 0.0
-                if leg3_left<0.0001 and leg3_left>-0.0001:
-                    leg3_left = 0.0
-                if leg4_left<0.0001 and leg4_left>-0.0001:
-                    leg4_left = 0.0
-#3
-                if body_hip_right<0.0001 and body_hip_right>-0.0001:
-                    body_hip_right = 0.0
-                if body_hip2_right<0.0001 and body_hip2_right>-0.0001:
-                    body_hip2_right = 0.0
-                if leg_right<0.0001 and leg_right>-0.0001:
-                    leg_right = 0.0
-                if leg2_right<0.0001 and leg2_right>-0.0001:
-                    leg2_right = 0.0
-                if leg3_right<0.0001 and leg3_right>-0.0001:
-                    leg3_right = 0.0
-                if leg4_right<0.0001 and leg4_right>-0.0001:
-                    leg4_right = 0.0
+#                 #回到0时保留两位小数
+# #1
+#                 if body_head<0.0001 and body_head>-0.0001:
+#                     body_head = 0.0
+#                 if body_head2<0.0001 and body_head2>-0.0001:
+#                     body_head2 = 0.0
+#                 if arm_left<0.0001 and arm_left>-0.0001:
+#                     arm_left = 0.0
+#                 if hand_left<0.0001 and hand_left>-0.0001:
+#                     hand_left = 0.0
+#                 if arm_right<0.0001 and arm_right>-0.0001:
+#                     arm_right = 0.0
+#                 if hand_right<0.0001 and hand_right>-0.0001:
+#                     hand_right = 0.0
+# #2
+#                 if body_hip_left<0.0001 and body_hip_left>-0.0001:
+#                     body_hip_left = 0.0
+#                 if body_hip2_left<0.0001 and body_hip2_left>-0.0001:
+#                     body_hip2_left = 0.0
+#                 if leg_left<0.0001 and leg_left>-0.0001:
+#                     leg_left = 0.0
+#                 if leg2_left<0.0001 and leg2_left>-0.0001:
+#                     leg2_left = 0.0
+#                 if leg3_left<0.0001 and leg3_left>-0.0001:
+#                     leg3_left = 0.0
+#                 if leg4_left<0.0001 and leg4_left>-0.0001:
+#                     leg4_left = 0.0
+# #3
+#                 if body_hip_right<0.0001 and body_hip_right>-0.0001:
+#                     body_hip_right = 0.0
+#                 if body_hip2_right<0.0001 and body_hip2_right>-0.0001:
+#                     body_hip2_right = 0.0
+#                 if leg_right<0.0001 and leg_right>-0.0001:
+#                     leg_right = 0.0
+#                 if leg2_right<0.0001 and leg2_right>-0.0001:
+#                     leg2_right = 0.0
+#                 if leg3_right<0.0001 and leg3_right>-0.0001:
+#                     leg3_right = 0.0
+#                 if leg4_right<0.0001 and leg4_right>-0.0001:
+#                     leg4_right = 0.0
 
-                print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
-                print("----------")
-            else:
-                if (key == '\x03'):
-                    break
+#                 print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
+#                 print("----------")
+#             else:
+#                 if (key == '\x03'):
+#                     break
 
-            control_msg = Float64()
-#1
-            control_msg.data = body_head
-            pub_body_head.publish(control_msg)
-            control_msg.data = body_head2
-            pub_body_head2.publish(control_msg)
-            control_msg.data = arm_left
-            pub_arm_left.publish(control_msg)
-            control_msg.data = hand_left
-            pub_hand_left.publish(control_msg)
-            control_msg.data = arm_right
-            pub_arm_right.publish(control_msg)
-            control_msg.data = hand_right
-            pub_hand_right.publish(control_msg)
-#2
-            control_msg.data = body_hip_left
-            pub_body_hip_left.publish(control_msg)
-            control_msg.data = body_hip2_left
-            pub_body_hip2_left.publish(control_msg)
-            control_msg.data = leg_left
-            pub_leg_left.publish(control_msg)
-            control_msg.data = leg2_left
-            pub_leg2_left.publish(control_msg)
-            control_msg.data = leg3_left
-            pub_leg3_left.publish(control_msg)
-            control_msg.data = leg4_left
-            pub_leg4_left.publish(control_msg)
-#3
-            control_msg.data = body_hip_right
-            pub_body_hip_right.publish(control_msg)
-            control_msg.data = body_hip2_right
-            pub_body_hip2_right.publish(control_msg)
-            control_msg.data = leg_right
-            pub_leg_right.publish(control_msg)
-            control_msg.data = leg2_right
-            pub_leg2_right.publish(control_msg)
-            control_msg.data = leg3_right
-            pub_leg3_right.publish(control_msg)
-            control_msg.data = leg4_right
-            pub_leg4_right.publish(control_msg)
-#4
-            control_msg.data = body_hip
-            pub_body_hip.publish(control_msg)
+#             control_msg = Float64()
+# #1
+#             control_msg.data = body_head
+#             pub_body_head.publish(control_msg)
+#             control_msg.data = body_head2
+#             pub_body_head2.publish(control_msg)
+#             control_msg.data = arm_left
+#             pub_arm_left.publish(control_msg)
+#             control_msg.data = hand_left
+#             pub_hand_left.publish(control_msg)
+#             control_msg.data = arm_right
+#             pub_arm_right.publish(control_msg)
+#             control_msg.data = hand_right
+#             pub_hand_right.publish(control_msg)
+# #2
+#             control_msg.data = body_hip_left
+#             pub_body_hip_left.publish(control_msg)
+#             control_msg.data = body_hip2_left
+#             pub_body_hip2_left.publish(control_msg)
+#             control_msg.data = leg_left
+#             pub_leg_left.publish(control_msg)
+#             control_msg.data = leg2_left
+#             pub_leg2_left.publish(control_msg)
+#             control_msg.data = leg3_left
+#             pub_leg3_left.publish(control_msg)
+#             control_msg.data = leg4_left
+#             pub_leg4_left.publish(control_msg)
+# #3
+#             control_msg.data = body_hip_right
+#             pub_body_hip_right.publish(control_msg)
+#             control_msg.data = body_hip2_right
+#             pub_body_hip2_right.publish(control_msg)
+#             control_msg.data = leg_right
+#             pub_leg_right.publish(control_msg)
+#             control_msg.data = leg2_right
+#             pub_leg2_right.publish(control_msg)
+#             control_msg.data = leg3_right
+#             pub_leg3_right.publish(control_msg)
+#             control_msg.data = leg4_right
+#             pub_leg4_right.publish(control_msg)
+# #4
+#             control_msg.data = body_hip
+#             pub_body_hip.publish(control_msg)
 
     # 异常处理 <名称> <数据>
     except Exception as e:
         print(e)
 
-    finally:
-        control_msg = Float64()
-#1
-        control_msg.data = 0
-        pub_body_head.publish(control_msg)
-        control_msg.data = 0
-        pub_body_head2.publish(control_msg)
-        control_msg.data = 0
-        pub_arm_left.publish(control_msg)
-        control_msg.data = 0
-        pub_hand_left.publish(control_msg)
-        control_msg.data = 0
-        pub_arm_right.publish(control_msg)
-        control_msg.data = 0
-        pub_hand_right.publish(control_msg)
-#2
-        control_msg.data = 0
-        pub_body_hip_left.publish(control_msg)
-        control_msg.data = 0
-        pub_body_hip2_left.publish(control_msg)
-        control_msg.data = 0
-        pub_leg_left.publish(control_msg)
-        control_msg.data = 0
-        pub_leg2_left.publish(control_msg)
-        control_msg.data = 0
-        pub_leg3_left.publish(control_msg)
-        control_msg.data = 0
-        pub_leg4_left.publish(control_msg)
-#3
-        control_msg.data = 0
-        pub_body_hip_right.publish(control_msg)
-        control_msg.data = 0
-        pub_body_hip2_right.publish(control_msg)
-        control_msg.data = 0
-        pub_leg_right.publish(control_msg)
-        control_msg.data = 0
-        pub_leg2_right.publish(control_msg)
-        control_msg.data = 0
-        pub_leg3_right.publish(control_msg)
-        control_msg.data = 0
-        pub_leg4_right.publish(control_msg)
-#4
-        control_msg.data = 0
-        pub_body_hip.publish(control_msg)
+# 后面这部分finally没必要了，直接把msg.data给0的话，是仿真中的零值，不是实际的竖直状态，反而可能会让机器人乱掉
+#     finally:
+#         control_msg = Float64()
+# #1
+#         control_msg.data = 0
+#         pub_body_head.publish(control_msg)
+#         control_msg.data = 0
+#         pub_body_head2.publish(control_msg)
+#         control_msg.data = 0
+#         pub_arm_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_hand_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_arm_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_hand_right.publish(control_msg)
+# #2
+#         control_msg.data = 0
+#         pub_body_hip_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_body_hip2_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg2_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg3_left.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg4_left.publish(control_msg)
+# #3
+#         control_msg.data = 0
+#         pub_body_hip_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_body_hip2_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg2_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg3_right.publish(control_msg)
+#         control_msg.data = 0
+#         pub_leg4_right.publish(control_msg)
+# #4
+#         control_msg.data = 0
+#         pub_body_hip.publish(control_msg)
 
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
 

@@ -93,9 +93,9 @@
     <remap from="/joint_states" to="/dancer_urdf_model/joint_states" />
   </node>
 
-  <node name="dancer_keyboard_control"
+  <!-- <node name="dancer_keyboard_control"
     pkg="dancer_keyboard"
     type="dancer_keyboard.py"
-    output="screen" />
+    output="screen" /> -->
 
 </launch>
