@@ -2,9 +2,9 @@
 <robot
   name="dancer_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:property name="dam" value="0.0"/>
-  <xacro:property name="fri" value="5.0"/>
-  <xacro:property name="mass_upper" value="0.6"/>
-  <xacro:property name="mass_lower" value="2.0"/>
+  <xacro:property name="fri" value="10.0"/>
+  <xacro:property name="mass_upper" value="1.0"/>
+  <xacro:property name="mass_lower" value="1.0"/>
   <xacro:property name="gazebo_mu1" value="100000"/>
   <xacro:property name="gazebo_mu2" value="100000"/>
 <!-- root link -->

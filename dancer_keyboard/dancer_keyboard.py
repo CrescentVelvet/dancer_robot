@@ -11,13 +11,14 @@ import time
 import math
 
 # 16个关节的原版初始值
-raw_init_joint_rad = (0.05, -0.83, 0.55, 0.93, 0.66, -1.00, -0.06, -0.14, -1.68, 1.05, 1.32, 0.41, 0.11, 0.39, 1.71, 0.17)
+raw_init_joint_rad = (0.05, -0.81, 0.55, 0.93, -0.92, -0.97, -0.06, -0.18, -1.68, 1.05, -0.25, 0.38, -3.07, -2.77, -1.43, -3.00)
 # 16个关节的小仿初始值
 real_init_joint_rad = (0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, 0.0, 0.0, -1 * 0.9863501374843194, -1 * 1.0960301183381471, -1 * -0.9150202762845632, -1 * 0.0, -1 * -2.3025081624009993, -1 * 1.9627274636227432, -1 * -2.3025081624009993, 1 * 1.9627274636227432)
 real_init_joint_rad = list(real_init_joint_rad)
 # 用原版初始值减去小仿初始值
 for index in range(len(raw_init_joint_rad)):
-    real_init_joint_rad[index] = raw_init_joint_rad[index] - real_init_joint_rad[index]
+    real_init_joint_rad[index] = raw_init_joint_rad[index]
+    #real_init_joint_rad[index] = raw_init_joint_rad[index] - real_init_joint_rad[index]
 
 msg = """
 
@@ -190,20 +191,20 @@ if __name__=="__main__":
             # 赋值
             body_hip_right  = real_init_joint_rad[0]  + line_data[0]
             body_hip2_right = real_init_joint_rad[1]  + line_data[1]
-            leg_right       = real_init_joint_rad[2]  - line_data[2]
+            leg_right       = real_init_joint_rad[2]  + line_data[2]#
             leg2_right      = real_init_joint_rad[3]  - line_data[3]
-            leg3_right      = real_init_joint_rad[4]  - line_data[4]
-            leg4_right      = real_init_joint_rad[5]  - line_data[5]
+            leg3_right      = real_init_joint_rad[4]  + line_data[4]#
+            leg4_right      = real_init_joint_rad[5]  + line_data[5]#
             body_hip_left   = real_init_joint_rad[6]  + line_data[6]
             body_hip2_left  = real_init_joint_rad[7]  + line_data[7]
-            leg_left        = real_init_joint_rad[8]  - line_data[8]
+            leg_left        = real_init_joint_rad[8]  + line_data[8]#
             leg2_left       = real_init_joint_rad[9]  - line_data[9]
-            leg3_left       = real_init_joint_rad[10] - line_data[10]
-            leg4_left       = real_init_joint_rad[11] - line_data[11]
-            arm_right       = real_init_joint_rad[12] - line_data[12]
-            hand_right      = real_init_joint_rad[13] - line_data[13]
-            arm_left        = real_init_joint_rad[14] - line_data[14]
-            hand_left       = real_init_joint_rad[15] + line_data[15]
+            leg3_left       = real_init_joint_rad[10] + line_data[10]#
+            leg4_left       = real_init_joint_rad[11] + line_data[11]#
+            arm_right       = real_init_joint_rad[12] + line_data[12]#
+            hand_right      = real_init_joint_rad[13] + line_data[13]#
+            arm_left        = real_init_joint_rad[14] + line_data[14]#
+            hand_left       = real_init_joint_rad[15] - line_data[15]#
 
             # 发送
             control_msg = Float64()
