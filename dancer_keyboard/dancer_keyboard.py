@@ -12,7 +12,7 @@ import math
 
 # 16个关节的原版初始值
 raw_init_joint_rad = (0.05, -0.83, 0.55, 0.79, -0.83, -1.08, 0.01, -0.14, -1.68, 1.05, -0.19, 0.41, 0.06, -2.76, 1.69, -2.96)
-
+# 关节转向正负性
 zf = (1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, -1, -1, 1, -1, -1)
 # line_data = (0, 0, 49.965800, 69.257800, 32.036100, 0, 0, 0, 49.965800, 69.257800, 32.036100, 0, 47.285200, -16.215800,   47.285200, -16.215800)
 # line_data = (0, 0, -9.97559, 35.463900, 95.888700, 0, 0, 0, -9.97559, 35.463900, 95.888700, 0, -49.394500, 143.65700,  -49.394500, 143.65700)
@@ -170,7 +170,7 @@ if __name__=="__main__":
         print("Init start  : %s" % time.ctime())
 
         #读取数据
-        f = open("/home/jingxin/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
+        f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
         init_flag = 1 # 让竖直躺平sleep久一点
         line_string = f.readline()
         while line_string:
@@ -180,7 +180,7 @@ if __name__=="__main__":
                 line_str.remove('')
             line_str.pop(-1) # 删除时间戳
             line_data = list(map(float,line_str))
-            print(line_data)
+            #print(line_data)
             # 角度制转换弧度制
             for index in range(len(line_data)):
                 line_data[index] = math.radians(line_data[index])
@@ -259,9 +259,9 @@ if __name__=="__main__":
             time.sleep(0.01) # 间隔10ms
             if init_flag == 1:
                 time.sleep(3)
-                print("init data")
-                print(line_data)
-                print("init state")
+                #print("init data")
+                #print(line_data)
+                #print("init state")
                 print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
                 init_flag = 0
             line_string = f.readline()

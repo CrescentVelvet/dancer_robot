@@ -1,10 +1,14 @@
 <?xml version = "1.0"?>
 <robot
   name="dancer_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--关节阻尼与摩擦力-->
   <xacro:property name="dam" value="0.0"/>
-  <xacro:property name="fri" value="10.0"/>
-  <xacro:property name="mass_upper" value="1.0"/>
-  <xacro:property name="mass_lower" value="1.0"/>
+  <xacro:property name="fri" value="20.0"/>
+  <!--上半身与下半身质量系数-->
+  <xacro:property name="mass_upper" value="1.0"/><!--head,arm,hand,hip-->
+  <xacro:property name="mass_middle" value="3.0"/><!--hipleft,hipleft2,leg1-->
+  <xacro:property name="mass_lower" value="10.0"/><!--leg2,leg3,leg4-->
+  <!--gazebo摩擦力-->
   <xacro:property name="gazebo_mu1" value="100000"/>
   <xacro:property name="gazebo_mu2" value="100000"/>
 <!-- root link -->
@@ -456,7 +460,7 @@
         xyz="0.020727573256466 0.00401171130451616 -0.000185064805642399"
         rpy="0 0 0" />
       <mass
-        value="${0.05134 * mass_lower}" />
+        value="${0.05134 * mass_middle}" />
       <inertia
         ixx="3.419244e-05"
         ixy="0"
@@ -512,7 +516,7 @@
         xyz="-0.05214771499803 -0.0126151296156827 0.000799339990500914"
         rpy="0 0 0" />
       <mass
-        value="${0.17822 * mass_lower}" />
+        value="${0.17822 * mass_middle}" />
       <inertia
         ixx="4.7477808e-05"
         ixy="0"
@@ -568,7 +572,7 @@
         xyz="-0.0239762815919513 0.0733271184441349 -0.0492320368464383"
         rpy="0 0 0" />
       <mass
-        value="${0.11789 * mass_lower}" />
+        value="${0.11789 * mass_middle}" />
       <inertia
         ixx="0.000427905333"
         ixy="0"
@@ -792,7 +796,7 @@
         xyz="0.00360506662341747 0.00176962459685462 0.0179275732564661"
         rpy="0 0 0" />
       <mass
-        value="${0.0513468076618724 * mass_lower}" />
+        value="${0.0513468076618724 * mass_middle}" />
       <inertia
         ixx="3.419244e-05"
         ixy="0"
@@ -848,7 +852,7 @@
         xyz="-0.05274771645541 -0.00922434933235092 0.00864247622548692"
         rpy="0 0 0" />
       <mass
-        value="${0.178226118022815 * mass_lower}" />
+        value="${0.178226118022815 * mass_middle}" />
       <inertia
         ixx="4.7477808e-05"
         ixy="0"
@@ -904,7 +908,7 @@
         xyz="-0.0282237184526358 -0.0161687157017971 -0.0868287422428667"
         rpy="0 0 0" />
       <mass
-        value="${0.117898502766572 * mass_lower}" />
+        value="${0.117898502766572 * mass_middle}" />
       <inertia
         ixx="0.000427905333"
         ixy="0"
