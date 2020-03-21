@@ -1,0 +1,23 @@
+<launch>
+    <node pkg="dmotion"
+          name="d_motion_$(env ZJUDANCER_ROBOTID)"
+          type="MotionHub"
+          output="screen"
+          respawn="false"
+          required="true"
+          cwd="node">
+        <!--param name="RobotId" value="$(env ZJUDANCER_ROBOTID)" /-->
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/walk_param/foot_z.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/parameters/motion_hub_param.yaml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/com_x_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/com_y_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/com_z_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_x_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_y_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_z_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_pitch_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_roll_param.yml"/>
+        <rosparam command="load" file="$(find dconfig)/$(env ZJUDANCER_ROBOTID)/dmotion/ankle_yaw_param.yml"/>
+
+    </node>
+</launch>

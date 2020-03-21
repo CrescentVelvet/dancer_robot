@@ -1,0 +1,22 @@
+<launch>
+    <node pkg="dmotion"
+          name="d_motion_"
+          type="main"
+          output="screen"
+          respawn="false"
+          required="true"
+          cwd="node">
+        <rosparam command="load" file="$(find dmotion)/config/walk_param/foot_z.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/parameters/motion_hub_param.yaml"/>
+        <rosparam command="load" file="$(find dmotion)/config/com_x_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/com_y_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/com_z_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_x_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_y_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_z_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_pitch_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_roll_param.yml"/>
+        <rosparam command="load" file="$(find dmotion)/config/ankle_yaw_param.yml"/>
+
+    </node>
+</launch>
