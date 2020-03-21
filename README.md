@@ -72,4 +72,15 @@ sudo apt-get install ros-melodic-fake-localization
 sudo apt-get install ros-melodic-pr2-controller-manager
 killall gzserver
 ```
+# 代码思路
+
+总的思路是步态代码作为一个节点单开，发送内容为舵机值的topic，周期为10ms
+
+步态代码包括climb.cpp, walk.cpp, onefootlanding.cpp, 这些在dancer-motion中
+
+运行步态代码时运行里面的motion_hub.cpp，用来调度所有的动作，目前我们就是爬起接走路
+
+仿真这边代码要修改一下，变成订阅motion的话题得到舵机值作为line_data，后面的计算方法不用变
+
+
 
