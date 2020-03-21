@@ -72,7 +72,6 @@ int main(int argc, char **argv)
     pen.GiveAStep(0,0,11.2);
     for(int i = 0 ;i < 33 ; i++)
         pen.GiveATick();
-
     pen.GiveAStep(0,0,(10+1.5));
     for(int i = 0 ;i < 33 ; i++)
         pen.GiveATick();
@@ -103,6 +102,7 @@ int main(int argc, char **argv)
     pen.GiveAStep(0,0,(10+1.5));
     for(int i = 0 ;i < 33 ; i++)
         pen.GiveATick();
+        
     cout << "原地踏步" << endl;
     pen.GiveAStep(0,0,0);
     for(int i = 0 ;i < 33 ; i++)
