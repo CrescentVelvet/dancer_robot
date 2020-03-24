@@ -3,11 +3,14 @@
   name="dancer_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--关节阻尼与摩擦力-->
   <xacro:property name="dam" value="0.0"/>
-  <xacro:property name="fri" value="20.0"/>
+  <xacro:property name="fri" value="1.0"/>
+  <!--关节转动限制-->
+  <xacro:property name="lim_effort" value="10000.0"/>
+  <xacro:property name="lim_vel" value="10.0"/>
   <!--上半身与下半身质量系数-->
   <xacro:property name="mass_upper" value="1.0"/><!--head,arm,hand,hip-->
-  <xacro:property name="mass_middle" value="3.0"/><!--hipleft,hipleft2,leg1-->
-  <xacro:property name="mass_lower" value="10.0"/><!--leg2,leg3,leg4-->
+  <xacro:property name="mass_middle" value="4.0"/><!--hipleft,hipleft2,leg1-->
+  <xacro:property name="mass_lower" value="9.0"/><!--leg2,leg3,leg4-->
   <!--gazebo摩擦力-->
   <xacro:property name="gazebo_mu1" value="100000"/>
   <xacro:property name="gazebo_mu2" value="100000"/>
@@ -116,6 +119,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_head2">
@@ -172,6 +178,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="arm_left">
@@ -228,6 +237,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="hand_left">
@@ -284,6 +296,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="arm_right">
@@ -340,6 +355,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="hand_right">
@@ -396,6 +414,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_hip">
@@ -452,6 +473,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_hip_left">
@@ -508,6 +532,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_hip2_left">
@@ -564,6 +591,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg_left">
@@ -620,6 +650,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg2_left">
@@ -676,6 +709,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg3_left">
@@ -732,6 +768,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg4_left">
@@ -788,6 +827,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_hip_right">
@@ -844,6 +886,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="body_hip2_right">
@@ -900,6 +945,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg_right">
@@ -956,6 +1004,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg2_right">
@@ -1012,6 +1063,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg3_right">
@@ -1068,6 +1122,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
   <link
     name="leg4_right">
@@ -1124,6 +1181,9 @@
     <dynamics
       damping="${dam}"
       friction="${fri}" />
+    <limit 
+      effort="${lim_effort}" 
+      velocity="${lim_vel}" />
   </joint>
 <!-- camera -->
   <link
