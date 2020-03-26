@@ -8,9 +8,10 @@
   <xacro:property name="lim_effort" value="10000.0"/>
   <xacro:property name="lim_vel" value="10.0"/>
   <!--上半身与下半身质量系数-->
-  <xacro:property name="mass_upper" value="1.0"/><!--head,arm,hand,hip-->
+  <xacro:property name="mass_upper" value="1.0"/><!--head,hip-->
+  <xacro:property name="mass_hands" value="1.0"/><!--arm,hand-->
   <xacro:property name="mass_middle" value="4.0"/><!--hipleft,hipleft2,leg1-->
-  <xacro:property name="mass_lower" value="9.0"/><!--leg2,leg3,leg4-->
+  <xacro:property name="mass_lower" value="8.0"/><!--leg2,leg3,leg4-->
   <!--gazebo摩擦力-->
   <xacro:property name="gazebo_mu1" value="100000"/>
   <xacro:property name="gazebo_mu2" value="100000"/>
@@ -189,7 +190,7 @@
         xyz="0.00185814795587239 -0.0815728051955473 0.0294005743652034"
         rpy="0 0 0" />
       <mass
-        value="${0.14297 * mass_upper}" />
+        value="${0.14297 * mass_hands}" />
       <inertia
         ixx="0.00017824813344"
         ixy="0"
@@ -248,7 +249,7 @@
         xyz="-0.00150000000000006 0.0513998176588075 -0.0471166731147821"
         rpy="0 0 0" />
       <mass
-        value="${0.02194 * mass_upper}" />
+        value="${0.02194 * mass_hands}" />
       <inertia
         ixx="2.676925728e-05"
         ixy="0"
@@ -307,7 +308,7 @@
         xyz="0.00187545595097149 -0.0810657497418857 0.0317817660201292"
         rpy="0 0 0" />
       <mass
-        value="${0.141656759847187 * mass_upper}" />
+        value="${0.141656759847187 * mass_hands}" />
       <inertia
         ixx="0.00017824813344"
         ixy="0"
@@ -366,7 +367,7 @@
         xyz="-0.00150000000000061 -0.0550818675496146 -0.0427540642279834"
         rpy="0 0 0" />
       <mass
-        value="${0.021948273112724 * mass_upper}" />
+        value="${0.021948273112724 * mass_hands}" />
       <inertia
         ixx="2.676925728e-05"
         ixy="0"

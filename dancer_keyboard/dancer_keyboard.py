@@ -237,50 +237,50 @@ if __name__=="__main__":
         # print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
         # print("----------")
 
-        # # 执行机器人从躺平爬起来的动作(注意关节顺序有改动)
-        # time.sleep(6)
-        # print("----------")
-        # print("Init start  : %s" % time.ctime())
-        # #读取爬起txt文件的数据
-        # f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
-        # init_flag = 1 # 让竖直躺平sleep久一点
-        # line_string = f.readline()
-        # while line_string:
-        #     # 读取
-        #     line_str = line_string.split(' ')
-        #     while '' in line_str:
-        #         line_str.remove('')
-        #     line_str.pop(-1) # 删除时间戳
-        #     line_data = list(map(float,line_str))
-        #     # 角度制转换弧度制
-        #     for index in range(len(line_data)):
-        #         line_data[index] = math.radians(line_data[index])
-        #     #print(raw_init_joint_rad)#初始化状态数据
-        #     #print(f)#拿到原始数据
-        #     #print(line_string)#提取一行数据
-        #     #print(line_str)#转换为str数组
-        #     #print(line_data)#转换为float数组
+        # 执行机器人从躺平爬起来的动作(注意关节顺序有改动)
+        time.sleep(6)
+        print("----------")
+        print("Init start  : %s" % time.ctime())
+        #读取爬起txt文件的数据
+        f = open("/home/ruby/catkin_ws/src/dancer_robot/dancer_keyboard/forward_climb.txt","r")
+        init_flag = 1 # 让竖直躺平sleep久一点
+        line_string = f.readline()
+        while line_string:
+            # 读取
+            line_str = line_string.split(' ')
+            while '' in line_str:
+                line_str.remove('')
+            line_str.pop(-1) # 删除时间戳
+            line_data = list(map(float,line_str))
+            # 角度制转换弧度制
+            for index in range(len(line_data)):
+                line_data[index] = math.radians(line_data[index])
+            #print(raw_init_joint_rad)#初始化状态数据
+            #print(f)#拿到原始数据
+            #print(line_string)#提取一行数据
+            #print(line_str)#转换为str数组
+            #print(line_data)#转换为float数组
 
-        #     # 赋值
-        #     dancer_assign()
+            # 赋值
+            dancer_assign()
 
-        #     # 发送
-        #     dancer_send()
+            # 发送
+            dancer_send()
   
-        #     time.sleep(0.01) # 间隔10ms进行下一个动作
-        #     if init_flag == 1:# 躺平需要时间3秒钟
-        #         time.sleep(3)
-        #         # print("init data")
-        #         # print(line_data)
-        #         # print("init state")
-        #         # print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
-        #         init_flag = 0
-        #     line_string = f.readline()
-        # f.close()
-        # time.sleep(3)
-        # print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
-        # print("Init finish : %s" % time.ctime())
-        # print("----------")
+            time.sleep(0.01) # 间隔10ms进行下一个动作
+            if init_flag == 1:# 躺平需要时间3秒钟
+                time.sleep(3)
+                # print("init data")
+                # print(line_data)
+                # print("init state")
+                # print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
+                init_flag = 0
+            line_string = f.readline()
+        f.close()
+        time.sleep(3)
+        print(robot_msg(body_hip_right,body_hip2_right,leg_right,leg2_right,leg3_right,leg4_right,body_hip_left,body_hip2_left,leg_left,leg2_left,leg3_left,leg4_left,arm_right,hand_right,arm_left,hand_left))
+        print("Init finish : %s" % time.ctime())
+        print("----------")
 
         # 接入dancer-motion
         motion_msg = rospy.Subscriber('/ServoInfo', Float64MultiArray, motion_callback)
