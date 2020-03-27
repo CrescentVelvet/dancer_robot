@@ -1,4 +1,5 @@
 <?xml version = "1.0"?>
+
 <robot
   name="dancer_urdf_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--关节阻尼与摩擦力-->
@@ -228,7 +229,7 @@
     type="continuous">
     <origin
       xyz="-0.46902 -0.2921 0.00017561"
-      rpy="-1.5708 -0.59813 1.5708" />
+      rpy="-1.5708 1.09187 1.5708" /><!--rpy="-1.5708 -0.59813 1.5708" put 1.69 into p-->
     <parent
       link="body_chest" />
     <child
@@ -287,7 +288,7 @@
     type="continuous">
     <origin
       xyz="0 -0.136 0.05255"
-      rpy="0.59813 -1.5708 0" />
+      rpy="-2.36187 -1.5708 0" /><!--rpy="0.59813 -1.5708 0" put -2.96 into r-->
     <parent
       link="arm_left" />
     <child
@@ -346,7 +347,7 @@
     type="continuous">
     <origin
       xyz="-0.25942 -0.2921 0.00017561"
-      rpy="-1.5708 1.0373 1.5708" />
+      rpy="-1.5708 1.0973 1.5708" /><!--rpy="-1.5708 1.0373 1.5708" put 0.06 into p-->
     <parent
       link="body_chest" />
     <child
@@ -405,7 +406,7 @@
     type="continuous">
     <origin
       xyz="0 -0.136 0.00845"
-      rpy="2.1043 1.5708 0" />
+      rpy="-0.6557 1.5708 0" /><!--rpy="2.1043 1.5708 0" put -2.76 into r-->
     <parent
       link="arm_right" />
     <child
@@ -523,7 +524,7 @@
     type="continuous">
     <origin
       xyz="0.045 -0.0122 0.065"
-      rpy="1.5708 0 -1.5708" />
+      rpy="1.5608 0 -1.5708" /><!--rpy="1.5708 0 -1.5708" put 0.01 into r-->
     <parent
       link="body_hip" />
     <child
@@ -582,7 +583,7 @@
     type="continuous">
     <origin
       xyz="0.0493 0.033966 -0.0015267"
-      rpy="3.0498 0.044917 1.5708" />
+      rpy="3.2898 0.044917 1.5708" /><!--rpy="3.0498 0.044917 1.5708" put -0.14 into r-->
     <parent
       link="body_hip_left" />
     <child
@@ -641,7 +642,7 @@
     type="continuous">
     <origin
       xyz="-0.034 0.0013682 0.024061"
-      rpy="-2.6864 -1.514 1.5708" />
+      rpy="-1.0064 -1.514 1.5708" /><!--rpy="-2.6864 -1.514 1.5708" /> put -1.68 into r-->
     <parent
       link="body_hip2_left" />
     <child
@@ -700,7 +701,7 @@
     type="continuous">
     <origin
       xyz="-0.0006 0.098703 -0.068248"
-      rpy="0 0 0" />
+      rpy="-1.05 0 0" /><!--rpy="0 0 0" put 1.05 into r-->
     <parent
       link="leg_left" />
     <child
@@ -759,7 +760,7 @@
     type="continuous">
     <origin
       xyz="0.0006 0.11852 0.05341"
-      rpy="0 0 0" />
+      rpy="0.19 0 0" /><!--rpy="0 0 0" put -0.19 into r-->
     <parent
       link="leg2_left" />
     <child
@@ -818,7 +819,7 @@
     type="continuous">
     <origin
       xyz="-0.0241 -0.0065502 0.035907"
-      rpy="-2.9765 -0.0732 0.41369" />
+      rpy="0 0.3368 0.41369" /><!--rpy="-2.9765 -0.0732 0.41369" put 0.41 into p-->
     <parent
       link="leg3_left" />
     <child
@@ -877,7 +878,7 @@
     type="continuous">
     <origin
       xyz="-0.045 -0.015 0.065"
-      rpy="1.5708 -1.0684 0" />
+      rpy="1.5708 -1.1184 0" /><!--rpy="1.5708 -1.0684 0" put 0.05 into p-->
     <parent
       link="body_hip" />
     <child
@@ -936,7 +937,7 @@
     type="continuous">
     <origin
       xyz="0.031042 0.015283 0.0465"
-      rpy="1.479 0 0.4575" />
+      rpy="2.309 0 0.4575" /><!--rpy="1.479 0 0.4575" put -0.83 into r-->
     <parent
       link="body_hip_right" />
     <child
@@ -995,7 +996,7 @@
     type="continuous">
     <origin
       xyz="-0.0346 -0.019079 -0.02063"
-      rpy="-0.34551 0.82443 -1.5708" />
+      rpy="0.20449 0.82443 -1.5708" /><!--rpy="-0.34551 0.82443 -1.5708" put 0.55 into r-->
     <parent
       link="body_hip2_right" />
     <child
@@ -1054,7 +1055,7 @@
     type="continuous">
     <origin
       xyz="-0.0016 -0.020351 -0.11826"
-      rpy="0 0 0" />
+      rpy="0.79 0 0" /><!--rpy="0 0 0" put 0.79 into r-->
     <parent
       link="leg_right" />
     <child
@@ -1113,7 +1114,7 @@
     type="continuous">
     <origin
       xyz="0 -0.1146 -0.061382"
-      rpy="0 0 0" />
+      rpy="-0.83 0 0" /><!--rpy="0 0 0" put -0.83 into r-->
     <parent
       link="leg2_right" />
     <child
@@ -1171,8 +1172,8 @@
     name="joint_leg4_right"
     type="continuous">
     <origin
-      xyz="-0.0265 -0.035971 0.0061902"
-      rpy="1.883 -0.9859 2.8787" />
+      xyz="-0.0265 0 0.0061902"
+      rpy="1.883 0.0941 2.8787" /><!--rpy="1.883 -0.9859 2.8787" put -1.08 into p--><!--xyz="-0.0265 -0.035971 0.0061902"-->
     <parent
       link="leg3_right" />
     <child

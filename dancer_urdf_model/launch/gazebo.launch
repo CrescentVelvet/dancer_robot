@@ -35,11 +35,15 @@
     name="dancer_spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 1.57"
+    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0 -R 1.57 -P 0 -Y 0"
     output="screen" />
 <!--
+  2020.02.25
     args="-file $(find dancer_urdf_model)/robots/dancer_urdf_model.URDF -urdf -model dancer_urdf_model"
+  2020.03.10
     args="-urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 0"
+  2020.03.27
+    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0.5 -R 1.57 -P 0 -Y 1.57"
 -->
 
   <include

@@ -12,9 +12,29 @@ import time
 import math
 
 # 16个关节的原版初始值
-raw_init_joint_rad = (0.05, -0.83, 0.55, 0.79, -0.83, -1.08, 0.01, -0.14, -1.68, 1.05, -0.19, 0.41, 0.06, -2.76, 1.69, -2.96)
+raw_init_joint_rad = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+# raw_init_joint_rad = (0.05, -0.83, 0.55, 0.79, -0.83, -1.08, 0.01, -0.14, -1.68, 1.05, -0.19, 0.41, 0.06, -2.76, 1.69, -2.96)
 # 关节转向正负性
 zf = (1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, -1, -1, 1, -1, -1)
+
+#"right_hip_yaw",     body_hip_right
+#"right_hip_roll",    body_hip2_right
+#"right_hip_pitch",   leg_right
+#"right_knee",        leg2_right
+#"right_ankle_pitch", leg3_right
+#"right_ankle_roll",  leg4_right
+
+#"left_hip_yaw",      body_hip_left
+#"left_hip_roll",     body_hip2_left
+#"left_hip_pitch",    leg_left
+#"left_knee",         leg2_left
+#"left_ankle_pitch",  leg3_left
+#"left_ankle_roll",   leg4_left
+
+#"right_arm_upper",   arm_right
+#"right_arm_lower",   hand_right
+#"left_arm_upper",    arm_left
+#"left_arm_lower"     hand_left
 
 msg = """
 
@@ -282,9 +302,9 @@ if __name__=="__main__":
         print("Init finish : %s" % time.ctime())
         print("----------")
 
-        # 接入dancer-motion
-        motion_msg = rospy.Subscriber('/ServoInfo', Float64MultiArray, motion_callback)
-        rospy.spin()
+        # # 接入dancer-motion
+        # motion_msg = rospy.Subscriber('/ServoInfo', Float64MultiArray, motion_callback)
+        # rospy.spin()
 
 # 调动作的时候可以把键盘关掉了
 
@@ -414,22 +434,3 @@ if __name__=="__main__":
         print(e)
 
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-
-#"right_hip_yaw",     body_hip_right
-#"right_hip_roll",    body_hip2_right
-#"right_hip_pitch",   leg_right
-#"right_knee",        leg2_right
-#"right_ankle_pitch", leg3_right
-#"right_ankle_roll",  leg4_right
-
-#"left_hip_yaw",      body_hip_left
-#"left_hip_roll",     body_hip2_left
-#"left_hip_pitch",    leg_left
-#"left_knee",         leg2_left
-#"left_ankle_pitch",  leg3_left
-#"left_ankle_roll",   leg4_left
-
-#"right_arm_upper",   arm_right
-#"right_arm_lower",   hand_right
-#"left_arm_upper",    arm_left
-#"left_arm_lower"     hand_left
