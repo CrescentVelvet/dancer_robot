@@ -10,7 +10,7 @@
   <xacro:property name="lim_vel" value="10.0"/>
   <!--上半身与下半身质量系数-->
   <xacro:property name="mass_upper" value="1.0"/><!--head,hip-->
-  <xacro:property name="mass_hands" value="1.0"/><!--arm,hand-->
+  <xacro:property name="mass_hands" value="2.0"/><!--arm,hand-->
   <xacro:property name="mass_middle" value="4.0"/><!--hipleft,hipleft2,leg1-->
   <xacro:property name="mass_lower" value="8.0"/><!--leg2,leg3,leg4-->
   <!--gazebo摩擦力-->
@@ -524,7 +524,7 @@
     type="continuous">
     <origin
       xyz="0.045 -0.0122 0.065"
-      rpy="1.5608 0 -1.5708" /><!--rpy="1.5708 0 -1.5708" put 0.01 into r-->
+      rpy="1.6008 0 -1.5708" /><!--rpy="1.5708 0 -1.5708" put 0.03 into r-->
     <parent
       link="body_hip" />
     <child
@@ -819,11 +819,11 @@
     type="continuous">
     <origin
       xyz="-0.0241 -0.0065502 0.035907"
-      rpy="0 0.3368 0.41369" /><!--rpy="-2.9765 -0.0732 0.41369" put 0.41 into p-->
+      rpy="-2.9765 -0.0132 0.11369" /><!--rpy="-2.9765 -0.0732 0.41369" put 0.41 into p-->
     <parent
-      link="leg3_left" />
+      link="leg3_left" /><!-- and put -0.35 into p-->
     <child
-      link="leg4_left" />
+      link="leg4_left" /><!-- and put -0.30 into y-->
     <axis
       xyz="0 0 1" />
     <dynamics
@@ -937,7 +937,7 @@
     type="continuous">
     <origin
       xyz="0.031042 0.015283 0.0465"
-      rpy="2.309 0 0.4575" /><!--rpy="1.479 0 0.4575" put -0.83 into r-->
+      rpy="2.229 0 0.4575" /><!--rpy="1.479 0 0.4575" put -0.83 into r and put -0.08 into r-->
     <parent
       link="body_hip_right" />
     <child
@@ -1055,9 +1055,9 @@
     type="continuous">
     <origin
       xyz="-0.0016 -0.020351 -0.11826"
-      rpy="0.79 0 0" /><!--rpy="0 0 0" put 0.79 into r-->
+      rpy="0.94 0 0" /><!--rpy="0 0 0" put 0.79 into r-->
     <parent
-      link="leg_right" />
+      link="leg_right" /><!-- and put 0.15 into r-->
     <child
       link="leg2_right" />
     <axis
@@ -1172,14 +1172,14 @@
     name="joint_leg4_right"
     type="continuous">
     <origin
-      xyz="-0.0265 0 0.0061902"
-      rpy="1.883 0.0941 2.8787" /><!--rpy="1.883 -0.9859 2.8787" put -1.08 into p--><!--xyz="-0.0265 -0.035971 0.0061902"-->
+      xyz="-0.0265 -0.035971 0.0061902"
+      rpy="1.753 -0.1059 3.1487" /><!--rpy="1.883 -0.9859 2.8787" put -1.08 into p-->
     <parent
-      link="leg3_right" />
+      link="leg3_right" /><!-- and put 0.27 into y-->
     <child
-      link="leg4_right" />
+      link="leg4_right" /><!-- and put -0.13 into r-->
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 1" /><!-- and put -0.20 into p-->
     <dynamics
       damping="${dam}"
       friction="${fri}" />
