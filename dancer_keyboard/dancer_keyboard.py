@@ -302,9 +302,9 @@ if __name__=="__main__":
         print("Init finish : %s" % time.ctime())
         print("----------")
 
-        # # 接入dancer-motion
-        # motion_msg = rospy.Subscriber('/ServoInfo', Float64MultiArray, motion_callback)
-        # rospy.spin()
+        # 接入dancer-motion
+        motion_msg = rospy.Subscriber('/ServoInfo', Float64MultiArray, motion_callback)
+        rospy.spin()
 
 # 调动作的时候可以把键盘关掉了
 
