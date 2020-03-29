@@ -1,12 +1,12 @@
 # PID 参数
-PID_p_upper: &PID_p_upper 300.0 # head,hip
+PID_p_upper: &PID_p_upper 230.0 # head,hip
 PID_p_upper: &PID_p_hands 230.0 # arm,hand
-PID_p_middle: &PID_p_middle 500.0 # hipleft,hipleft2,leg1
-PID_p_lower: &PID_p_lower 400.0 # leg2,leg3,leg4
-PID_i_upper: &PID_i_upper 300.0
-PID_i_lower: &PID_i_lower 400.0
-PID_d_upper: &PID_d_upper 0.0
-PID_d_lower: &PID_d_lower 0.01
+PID_p_middle: &PID_p_middle 230.0 # hipleft,hipleft2,leg1
+PID_p_lower: &PID_p_lower 230.0 # leg2,leg3,leg4
+PID_i_upper: &PID_i_upper 0.01 # 500
+PID_i_lower: &PID_i_lower 0.01 # 800
+PID_d_upper: &PID_d_upper 0.001 # 0.0001
+PID_d_lower: &PID_d_lower 0.0 # 0.002
 
 dancer_urdf_model:
   # Publish all joint states -----------------------------------

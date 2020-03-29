@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     ros::Rate loop_rate(1000.0 / parameters.three_interpolation_param.DEFAULT_POINT_INTERVAL);
 
     std::vector<double> forward_position = {0, 0, -9.97559, 35.463900, 95.888700, 0, 0, 0, -9.97559, 35.463900, 95.888700, 0, -49.394500, 143.65700,  -49.394500, 143.65700};
-    // climb_global = new Climb(&ServoInfo_pub, &loop_rate, "FORWARD", forward_position);
+    climb_global = new Climb(&ServoInfo_pub, &loop_rate, "FORWARD", forward_position);
     // climb_global = new Climb(&ServoInfo_pub, &loop_rate, "BACK",    back_position);
 
     cout << "准备爬起" << endl;

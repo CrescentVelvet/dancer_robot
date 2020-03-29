@@ -6,7 +6,7 @@
   <xacro:property name="dam" value="0.0"/>
   <xacro:property name="fri" value="1.0"/>
   <!--关节转动限制-->
-  <xacro:property name="lim_effort" value="10000.0"/>
+  <xacro:property name="lim_effort" value="1000000.0"/>
   <xacro:property name="lim_vel" value="10.0"/>
   <!--上半身与下半身质量系数-->
   <xacro:property name="mass_upper" value="1.0"/><!--head,hip-->
