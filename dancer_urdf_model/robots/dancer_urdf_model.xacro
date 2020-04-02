@@ -35,12 +35,12 @@
       <mass
         value="${0.66907 * mass_upper}" />
       <inertia
-        ixx="0.000757521054"
+        ixx="${0.000757521054 * sqrt(mass_upper)}"
         ixy="0"
         ixz="0"
-        iyy="0.000557000775"
+        iyy="${0.000557000775 * sqrt(mass_upper)}"
         iyz="0"
-        izz="0.000913481271" />
+        izz="${0.000913481271 * sqrt(mass_upper)}" />
     </inertial>
     <visual>
       <origin
@@ -134,12 +134,12 @@
       <mass
         value="${0.06736 * mass_upper}" />
       <inertia
-        ixx="1.7946036e-05"
+        ixx="${1.7946036e-05 * sqrt(mass_upper)}"
         ixy="0"
         ixz="0"
-        iyy="1.471574952e-05"
+        iyy="${1.471574952e-05 * sqrt(mass_upper)}"
         iyz="0"
-        izz="1.471574952e-05" />
+        izz="${1.471574952e-05 * sqrt(mass_upper)}" />
     </inertial>
     <visual>
       <origin
@@ -193,12 +193,12 @@
       <mass
         value="${0.14297 * mass_hands}" />
       <inertia
-        ixx="0.00017824813344"
+        ixx="${0.00017824813344 * sqrt(mass_hands)}"
         ixy="0"
         ixz="0"
-        iyy="1.9043604e-05"
+        iyy="${1.9043604e-05 * sqrt(mass_hands)}"
         iyz="0"
-        izz="0.00018358034256" />
+        izz="${0.00018358034256 * sqrt(mass_hands)}" />
     </inertial>
     <visual>
       <origin
@@ -252,12 +252,12 @@
       <mass
         value="${0.02194 * mass_hands}" />
       <inertia
-        ixx="2.676925728e-05"
+        ixx="${2.676925728e-05 * sqrt(mass_hands)}"
         ixy="0"
         ixz="0"
-        iyy="4.9680936e-07"
+        iyy="${4.9680936e-07 * sqrt(mass_hands)}"
         iyz="0"
-        izz="2.633089608e-05" />
+        izz="${2.633089608e-05 * sqrt(mass_hands)}" />
     </inertial>
     <visual>
       <origin
@@ -311,12 +311,12 @@
       <mass
         value="${0.14165 * mass_hands}" />
       <inertia
-        ixx="0.00017824813344"
+        ixx="${0.00017824813344 * sqrt(mass_hands)}"
         ixy="0"
         ixz="0"
-        iyy="1.9043604e-05"
+        iyy="${1.9043604e-05 * sqrt(mass_hands)}"
         iyz="0"
-        izz="0.00018358034256" />
+        izz="${0.00018358034256 * sqrt(mass_hands)}" />
     </inertial>
     <visual>
       <origin
@@ -370,12 +370,12 @@
       <mass
         value="${0.02194 * mass_hands}" />
       <inertia
-        ixx="2.676925728e-05"
+        ixx="${2.676925728e-05 * sqrt(mass_hands)}"
         ixy="0"
         ixz="0"
-        iyy="4.9680936e-07"
+        iyy="${4.9680936e-07 * sqrt(mass_hands)}"
         iyz="0"
-        izz="2.633089608e-05" />
+        izz="${2.633089608e-05 * sqrt(mass_hands)}" />
     </inertial>
     <visual>
       <origin
@@ -429,12 +429,12 @@
       <mass
         value="${0.22074 * mass_upper}" />
       <inertia
-        ixx="4.59415125e-05"
+        ixx="${4.59415125e-05 * sqrt(mass_upper)}"
         ixy="0"
         ixz="0"
-        iyy="0.00014701284"
+        iyy="${0.00014701284 * sqrt(mass_upper)}"
         iyz="0"
-        izz="0.0001341492165" />
+        izz="${0.0001341492165 * sqrt(mass_upper)}" />
     </inertial>
     <visual>
       <origin
@@ -488,12 +488,12 @@
       <mass
         value="${0.05134 * mass_middle}" />
       <inertia
-        ixx="3.419244e-05"
+        ixx="${3.419244e-05 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="1.3676976e-05"
+        iyy="${1.3676976e-05 * sqrt(mass_middle)}"
         iyz="0"
-        izz="3.419244e-05" />
+        izz="${3.419244e-05 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -547,12 +547,12 @@
       <mass
         value="${0.17822 * mass_middle}" />
       <inertia
-        ixx="4.7477808e-05"
+        ixx="${4.7477808e-05 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="0.00011869452"
+        iyy="${0.00011869452 * sqrt(mass_middle)}"
         iyz="0"
-        izz="0.00011869452" />
+        izz="${0.00011869452 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -606,12 +606,12 @@
       <mass
         value="${0.11789 * mass_middle}" />
       <inertia
-        ixx="0.000427905333"
+        ixx="${0.000427905333 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="7.0663266e-05"
+        iyy="${7.0663266e-05 * sqrt(mass_middle)}"
         iyz="0"
-        izz="0.000427905333" />
+        izz="${0.000427905333 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -665,12 +665,12 @@
       <mass
         value="${0.02783 * mass_lower}" />
       <inertia
-        ixx="0.000101014551"
+        ixx="${0.000101014551 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="1.6681302e-05"
+        iyy="${1.6681302e-05 * sqrt(mass_lower)}"
         iyz="0"
-        izz="0.000101014551" />
+        izz="${0.000101014551 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -724,12 +724,12 @@
       <mass
         value="${0.17745 * mass_lower}" />
       <inertia
-        ixx="0.0001181817"
+        ixx="${0.0001181817 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="0.000147727125"
+        iyy="${0.000147727125 * sqrt(mass_lower)}"
         iyz="0"
-        izz="7.6818105e-05" />
+        izz="${7.6818105e-05 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -783,12 +783,12 @@
       <mass
         value="${0.13465 * mass_lower}" />
       <inertia
-        ixx="0.00046631988"
+        ixx="${0.00046631988 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="0.00060980292"
+        iyy="${0.00060980292 * sqrt(mass_lower)}"
         iyz="0"
-        izz="0.0001793538" />
+        izz="${0.0001793538 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -842,12 +842,12 @@
       <mass
         value="${0.05134 * mass_middle}" />
       <inertia
-        ixx="3.419244e-05"
+        ixx="${3.419244e-05 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="1.3676976e-05"
+        iyy="${1.3676976e-05 * sqrt(mass_middle)}"
         iyz="0"
-        izz="3.419244e-05" />
+        izz="${3.419244e-05 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -901,12 +901,12 @@
       <mass
         value="${0.17822 * mass_middle}" />
       <inertia
-        ixx="4.7477808e-05"
+        ixx="${4.7477808e-05 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="0.00011869452"
+        iyy="${0.00011869452 * sqrt(mass_middle)}"
         iyz="0"
-        izz="0.00011869452" />
+        izz="${0.00011869452 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -960,12 +960,12 @@
       <mass
         value="${0.11789 * mass_middle}" />
       <inertia
-        ixx="0.000427905333"
+        ixx="${0.000427905333 * sqrt(mass_middle)}"
         ixy="0"
         ixz="0"
-        iyy="7.0663266e-05"
+        iyy="${7.0663266e-05 * sqrt(mass_middle)}"
         iyz="0"
-        izz="0.000427905333" />
+        izz="${0.000427905333 * sqrt(mass_middle)}" />
     </inertial>
     <visual>
       <origin
@@ -1019,12 +1019,12 @@
       <mass
         value="${0.02783 * mass_lower}" />
       <inertia
-        ixx="0.000101014551"
+        ixx="${0.000101014551 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="1.6681302e-05"
+        iyy="${1.6681302e-05 * sqrt(mass_lower)}"
         iyz="0"
-        izz="0.000101014551" />
+        izz="${0.000101014551 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -1078,12 +1078,12 @@
       <mass
         value="${0.17745 * mass_lower}" />
       <inertia
-        ixx="0.0001181817"
+        ixx="${0.0001181817 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="0.000147727125"
+        iyy="${0.000147727125 * sqrt(mass_lower)}"
         iyz="0"
-        izz="7.6818105e-05" />
+        izz="${7.6818105e-05 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -1137,12 +1137,12 @@
       <mass
         value="${0.13390 * mass_lower}" />
       <inertia
-        ixx="0.00046631988"
+        ixx="${0.00046631988 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="0.00060980292"
+        iyy="${0.00060980292 * sqrt(mass_lower)}"
         iyz="0"
-        izz="0.0001793538" />
+        izz="${0.0001793538 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin

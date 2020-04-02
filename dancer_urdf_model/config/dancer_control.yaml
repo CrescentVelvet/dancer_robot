@@ -1,13 +1,15 @@
 # PID 参数
-PID_p_upper: &PID_p_upper 100.0 # head,hip
-PID_p_upper: &PID_p_hands 210.0 # arm,hand
+PID_p_upper:  &PID_p_upper  100.0 # head,hip
+PID_p_arm:    &PID_p_arm    500.0 # arm
+PID_p_hand:   &PID_p_hand   210.0 # hand
 PID_p_middle: &PID_p_middle 500.0 # hipleft,hipleft2
-PID_p_lower: &PID_p_lower 230.0 # leg1,leg2
-PID_p_lowest: &PID_p_lowest 230.0 # leg3,leg4
-PID_i_upper: &PID_i_upper 0.01 # 500
-PID_i_lower: &PID_i_lower 0.03 # 800
-PID_d_upper: &PID_d_upper 0.01 # 0.0001
-PID_d_lower: &PID_d_lower 0.01 # 0.002
+PID_p_leg1:   &PID_p_leg1   300.0 # leg1
+PID_p_leg2:   &PID_p_leg2   300.0 # leg2
+PID_p_lower:  &PID_p_lower  300.0 # leg3,leg4
+PID_i_upper:  &PID_i_upper  0.01  # 500
+PID_i_lower:  &PID_i_lower  0.03  # 800
+PID_d_upper:  &PID_d_upper  0.01  # 0.0001
+PID_d_lower:  &PID_d_lower  0.01  # 0.002
 
 dancer_urdf_model:
   # Publish all joint states -----------------------------------
@@ -28,19 +30,19 @@ dancer_urdf_model:
   joint_arm_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_arm_left
-    pid: {p: *PID_p_hands, i: *PID_i_upper, d: *PID_d_upper}
+    pid: {p: *PID_p_arm, i: *PID_i_upper, d: *PID_d_upper}
   joint_hand_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_hand_left
-    pid: {p: *PID_p_hands, i: *PID_i_upper, d: *PID_d_upper}
+    pid: {p: *PID_p_hand, i: *PID_i_upper, d: *PID_d_upper}
   joint_arm_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_arm_right
-    pid: {p: *PID_p_hands, i: *PID_i_upper, d: *PID_d_upper}
+    pid: {p: *PID_p_arm, i: *PID_i_upper, d: *PID_d_upper}
   joint_hand_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_hand_right
-    pid: {p: *PID_p_hands, i: *PID_i_upper, d: *PID_d_upper}
+    pid: {p: *PID_p_hand, i: *PID_i_upper, d: *PID_d_upper}
 #2
   joint_body_hip_left_controller:
     type: effort_controllers/JointPositionController
@@ -53,19 +55,19 @@ dancer_urdf_model:
   joint_leg_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg_left
-    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_leg1, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg2_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg2_left
-    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_leg2, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg3_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg3_left
-    pid: {p: *PID_p_lowest, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg4_left_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg4_left
-    pid: {p: *PID_p_lowest, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
 #3
   joint_body_hip_right_controller:
     type: effort_controllers/JointPositionController
@@ -78,19 +80,19 @@ dancer_urdf_model:
   joint_leg_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg_right
-    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_leg1, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg2_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg2_right
-    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_leg2, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg3_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg3_right
-    pid: {p: *PID_p_lowest, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
   joint_leg4_right_controller:
     type: effort_controllers/JointPositionController
     joint: joint_leg4_right
-    pid: {p: *PID_p_lowest, i: *PID_i_lower, d: *PID_d_lower}
+    pid: {p: *PID_p_lower, i: *PID_i_lower, d: *PID_d_lower}
 #4
   joint_body_hip_controller:
     type: effort_controllers/JointPositionController
