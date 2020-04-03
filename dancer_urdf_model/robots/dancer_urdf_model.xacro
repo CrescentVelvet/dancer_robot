@@ -7,7 +7,7 @@
   <xacro:property name="fri" value="1.0"/>
   <!--关节转动限制-->
   <xacro:property name="lim_effort" value="1000000.0"/>
-  <xacro:property name="lim_vel" value="10.0"/>
+  <xacro:property name="lim_vel" value="1.0"/>
   <!--上半身与下半身质量系数-->
   <xacro:property name="mass_upper" value="1.0"/><!--head,hip-->
   <xacro:property name="mass_hands" value="2.0"/><!--arm,hand-->
@@ -760,9 +760,9 @@
     type="continuous">
     <origin
       xyz="0.0006 0.11852 0.05341"
-      rpy="0.36 0 0" /><!--rpy="0 0 0" put -0.19 * -1 into r-->
+      rpy="0.41 0 0" /><!--rpy="0 0 0" put -0.19 * -1 into r-->
     <parent
-      link="leg2_left" /><!-- put 0.17 into r to prevent falling-->
+      link="leg2_left" /><!-- put 0.22 into r to prevent falling-->
     <child
       link="leg3_left" />
     <axis
@@ -1114,9 +1114,9 @@
     type="continuous">
     <origin
       xyz="0 -0.1146 -0.061382"
-      rpy="-0.96 0 0" /><!--rpy="0 0 0" put -0.83 into r-->
+      rpy="-1.05 0 0" /><!--rpy="0 0 0" put -0.83 into r-->
     <parent
-      link="leg2_right" /><!-- put -0.17 into r to prevent falling-->
+      link="leg2_right" /><!-- put -0.22 into r to prevent falling-->
     <child
       link="leg3_right" />
     <axis

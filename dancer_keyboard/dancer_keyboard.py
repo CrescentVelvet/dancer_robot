@@ -154,9 +154,9 @@ def dancer_assign():
     hand_right      = raw_init_joint_rad[13] + line_data[13] * zf[13]
     arm_left        = raw_init_joint_rad[14] + line_data[14] * zf[14]
     hand_left       = raw_init_joint_rad[15] + line_data[15] * zf[15]
-    body_head       = -0.05
-    body_head2      =  0.00
-    body_hip        =  0.00
+    body_head       = -3.09 # -0.05
+    body_head2      = 0.00
+    body_hip        = 0.00
 
 def dancer_send():
     global body_hip_right

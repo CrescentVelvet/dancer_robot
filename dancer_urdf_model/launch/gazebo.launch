@@ -35,7 +35,7 @@
     name="dancer_spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0 -R 1.57 -P 0 -Y 1.57"
+    args="$(optenv ROBOT_INITIAL_POSE) -unpause -urdf -param robot_description -model dancer_urdf_model -x 0 -y 0 -z 0 -R -1.57 -P 0 -Y 1.57"
     output="screen" />
 <!--
   2020.02.25
