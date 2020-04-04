@@ -6,7 +6,7 @@
   <xacro:property name="dam" value="0.0"/>
   <xacro:property name="fri" value="1.0"/>
   <!--关节转动限制-->
-  <xacro:property name="lim_effort" value="1000000.0"/>
+  <xacro:property name="lim_effort" value="10000000.0"/>
   <xacro:property name="lim_vel" value="1.0"/>
   <!--上半身与下半身质量系数-->
   <xacro:property name="mass_upper" value="1.0"/><!--head,hip-->
@@ -14,8 +14,8 @@
   <xacro:property name="mass_middle" value="4.0"/><!--hipleft,hipleft2,leg1-->
   <xacro:property name="mass_lower" value="10.0"/><!--leg2,leg3,leg4-->
   <!--gazebo摩擦力-->
-  <xacro:property name="gazebo_mu1" value="100000"/>
-  <xacro:property name="gazebo_mu2" value="100000"/>
+  <xacro:property name="gazebo_mu1" value="0.1"/>
+  <xacro:property name="gazebo_mu2" value="0.1"/>
 <!-- root link -->
   <link 
     name="world_link">
@@ -35,12 +35,12 @@
       <mass
         value="${0.66907 * mass_upper}" />
       <inertia
-        ixx="${0.000757521054 * sqrt(mass_upper)}"
+        ixx="${0.003030084216 * sqrt(mass_upper)}"
         ixy="0"
         ixz="0"
-        iyy="${0.000557000775 * sqrt(mass_upper)}"
+        iyy="${0.0022280031 * sqrt(mass_upper)}"
         iyz="0"
-        izz="${0.000913481271 * sqrt(mass_upper)}" />
+        izz="${0.003653925084 * sqrt(mass_upper)}" />
     </inertial>
     <visual>
       <origin
@@ -783,12 +783,12 @@
       <mass
         value="${0.13465 * mass_lower}" />
       <inertia
-        ixx="${0.00046631988 * sqrt(mass_lower)}"
+        ixx="${0.000919188225 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="${0.00060980292 * sqrt(mass_lower)}"
+        iyy="${0.00132721812 * sqrt(mass_lower)}"
         iyz="0"
-        izz="${0.0001793538 * sqrt(mass_lower)}" />
+        izz="${0.000488739105 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
@@ -1137,12 +1137,12 @@
       <mass
         value="${0.13390 * mass_lower}" />
       <inertia
-        ixx="${0.00046631988 * sqrt(mass_lower)}"
+        ixx="${0.000919188225 * sqrt(mass_lower)}"
         ixy="0"
         ixz="0"
-        iyy="${0.00060980292 * sqrt(mass_lower)}"
+        iyy="${0.00132721812 * sqrt(mass_lower)}"
         iyz="0"
-        izz="${0.0001793538 * sqrt(mass_lower)}" />
+        izz="${0.000488739105 * sqrt(mass_lower)}" />
     </inertial>
     <visual>
       <origin
