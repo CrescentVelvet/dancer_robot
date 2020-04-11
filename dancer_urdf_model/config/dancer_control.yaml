@@ -1,11 +1,11 @@
 # PID 参数
-PID_p_upper:  &PID_p_upper  400.0 # head,hip
+PID_p_upper:  &PID_p_upper  100.0 # head,hip
 PID_p_arm:    &PID_p_arm    500.0 # arm
-PID_p_hand:   &PID_p_hand   230.0 # hand
+PID_p_hand:   &PID_p_hand   300.0 # hand
 PID_p_middle: &PID_p_middle 500.0 # hipleft,hipleft2
-PID_p_leg1:   &PID_p_leg1   600.0 # leg1
-PID_p_leg2:   &PID_p_leg2   600.0 # leg2
-PID_p_lower:  &PID_p_lower  600.0 # leg3,leg4
+PID_p_leg1:   &PID_p_leg1   900.0 # leg1
+PID_p_leg2:   &PID_p_leg2   800.0 # leg2
+PID_p_lower:  &PID_p_lower  800.0 # leg3,leg4
 PID_i_upper:  &PID_i_upper  0.01  # 
 PID_i_lower:  &PID_i_lower  0.01  # 
 PID_d_upper:  &PID_d_upper  0.01  # 
