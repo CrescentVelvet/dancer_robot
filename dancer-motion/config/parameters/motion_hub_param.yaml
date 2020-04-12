@@ -48,7 +48,7 @@ dmotion:
     Kick:
         right_kick_x: -15.0
         right_kick_y: 7.0
-        right_kick_files: "/home/jingxin/catkin_ws/src/dancer_robot/dancer-motion/config/"
+        right_kick_files: "/home/ruby/catkin_ws/src/dancer_robot/dancer-motion/config/"
     Status:
         adjust_max_x: 4
         adjust_max_y: 2.5
