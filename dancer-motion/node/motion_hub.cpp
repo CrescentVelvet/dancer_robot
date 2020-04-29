@@ -33,7 +33,7 @@ Climb *climb_global = NULL;
 long action_now_time; //用于判定一段时间没有收到ActionCommand后就直接默认进入 Crouch 400
 bool walk_start = true;
 template <typename T>
-void DELETE(T *&x)
+void DELETE(T *&x) //用于删除的模板函数
 {
     if (x != NULL)
     {
@@ -41,22 +41,22 @@ void DELETE(T *&x)
         x = NULL;
     }
 }
-long gettimes()
+long gettimes() //获取当前时间，单位是纳秒ns
 {
     struct timespec time1 = {0, 0};
     clock_gettime(CLOCK_REALTIME, &time1);
     long nows = time1.tv_nsec + time1.tv_sec * 1000000000;
     return nows;
 }
-double ball_field_angle()
+double ball_field_angle() //计算机器人到球的正切->弧度->角度，并限制范围
 {
     return AdjustDegRange2(Rad2Deg(Atan(parameters.stp.ball_field[1], parameters.stp.ball_field[0])));
 }
-double ball_field_distance()
+double ball_field_distance() //计算机器人到球的距离（field为局部坐标系，global为全局坐标系）
 {
     return sqrt(parameters.stp.ball_field[0] * parameters.stp.ball_field[0] + parameters.stp.ball_field[1] * parameters.stp.ball_field[1]);
 }
-void clear_status()
+void clear_status() //清空全部状态
 {
     parameters.stp.gait_queue.clear();
     parameters.stp.tmp_gait.isRight = false;
@@ -68,17 +68,17 @@ void clear_status()
     walk_start = true;
 
 }
-void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg)
+void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg) //视觉信息回调函数
 {
 
-    parameters.stp.robot_global.clear();
+    parameters.stp.robot_global.clear(); //机器人自身的位置使用visionInfo中的机器人的位置
     parameters.stp.robot_global.push_back(msg->robot_pos.x);
     parameters.stp.robot_global.push_back(msg->robot_pos.y);
     parameters.stp.robot_global.push_back(msg->robot_pos.z);
 
     parameters.stp.see_ball = msg->see_ball;
     if (parameters.stp.see_ball)
-    { //如果现在是要走向aim,且可以看到球的情况下，使用visionInfo中的球的位置
+    { //如果现在是要走向aim，且可以看到球的情况下，球的位置使用visionInfo中的球的位置
         parameters.stp.ball_global.clear();
         parameters.stp.ball_global.push_back(msg->ball_global.x);
         parameters.stp.ball_global.push_back(msg->ball_global.y);
@@ -92,7 +92,7 @@ void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg)
     }
 }
 
-void MotionCallBack(const dmsgs::MotionInfo::ConstPtr &msg)
+void MotionCallBack(const dmsgs::MotionInfo::ConstPtr &msg) //运动控制回调函数
 {
     if (msg->lower_board_connected)
     {
@@ -250,9 +250,9 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ros::Publisher ServoInfo_pub = n.advertise<std_msgs::Float64MultiArray>("ServoInfo", 5);           //发布舵机角度信息
     ros::Subscriber MotionInfo_sub = n.subscribe("dmotion_" + str + "/MotionInfo", 3, MotionCallBack); //订阅MotionInfo得到跌倒信息和yaw信息
-    ros::Subscriber VisionInfo_sub = n.subscribe("dvision_" + str + "/VisionInfo", 3, VisionCallBack);
-    ros::Subscriber ActionInfo_sub = n.subscribe("dbehavior_" + str + "/ActionCommand", 1, ActionCallBack);
-    ros::Subscriber TuningChannel_sub = n.subscribe("TuningCommand", 1, TuningCallBack);
+    ros::Subscriber VisionInfo_sub = n.subscribe("dvision_" + str + "/VisionInfo", 3, VisionCallBack); //订阅VisionInfo得到视觉信息
+    ros::Subscriber ActionInfo_sub = n.subscribe("dbehavior_" + str + "/ActionCommand", 1, ActionCallBack); //订阅ActionCommand得到运动控制信息
+    ros::Subscriber TuningChannel_sub = n.subscribe("TuningCommand", 1, TuningCallBack); //订阅TuningCommand
     ros::Subscriber joy_sub = n.subscribe("joy", 1, joyCallBack);
     ros::Subscriber tele_sub = n.subscribe("teleop", 1, teleCallBack);
     parameters.init(&n);
