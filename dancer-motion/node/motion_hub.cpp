@@ -52,7 +52,7 @@ double ball_field_angle() //计算机器人到球的正切->弧度->角度，并
 {
     return AdjustDegRange2(Rad2Deg(Atan(parameters.stp.ball_field[1], parameters.stp.ball_field[0])));
 }
-double ball_field_distance() //计算机器人到球的距离（field为局部坐标系，global为全局坐标系）
+double ball_field_distance() //计算机器人到球的距离（field为局部坐标系即相对位置，global为全局坐标系）
 {
     return sqrt(parameters.stp.ball_field[0] * parameters.stp.ball_field[0] + parameters.stp.ball_field[1] * parameters.stp.ball_field[1]);
 }
@@ -68,8 +68,8 @@ void clear_status() //清空全部状态
     walk_start = true;
 
 }
-void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg) //视觉信息回调函数
-{
+void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg) //视觉信息回调函数，传递机器人全局位置和球的全局与相对位置信息
+{ // 得到vision视觉信息
 
     parameters.stp.robot_global.clear(); //机器人自身的位置使用visionInfo中的机器人的位置
     parameters.stp.robot_global.push_back(msg->robot_pos.x);
@@ -92,8 +92,8 @@ void VisionCallBack(const dmsgs::VisionInfo::ConstPtr &msg) //视觉信息回调
     }
 }
 
-void MotionCallBack(const dmsgs::MotionInfo::ConstPtr &msg) //运动控制回调函数
-{
+void MotionCallBack(const dmsgs::MotionInfo::ConstPtr &msg) //运动信息回调函数，判断机器人是否前后跌倒与直立
+{ // 得到跌倒信息与yaw角度信息
     if (msg->lower_board_connected)
     {
         if (!msg->stable)
@@ -118,15 +118,15 @@ void MotionCallBack(const dmsgs::MotionInfo::ConstPtr &msg) //运动控制回调
     else
     {
         clear_status();
-        parameters.status_code = (StatusCode)400; //下位机如果还没连接，直接crouch
+        parameters.status_code = (StatusCode)400; //下位机如果还没连接，直接 Crouch 400
     }
 }
 void TuningCallBack(const std_msgs::Int32::ConstPtr &msg)
 {
     parameters.status_code = (StatusCode)msg->data;
 }
-void ActionCallBack(const dmsgs::ActionCommand::ConstPtr &msg) //对VisionInfo进行处理的回调函数
-{
+void ActionCallBack(const dmsgs::ActionCommand::ConstPtr &msg) //对VisionInfo进行处理的回调函数，根据视觉信息选择0蹲着、1行走、2踢球、3转向、4爬起
+{ // 得到command运动控制信息
     // cout << ("get actioncommand") << endl;
     action_now_time = gettimes();
     if (parameters.stp.now_gait_type == msg->bodyCmd.gait_type)
@@ -242,19 +242,19 @@ void teleCallBack(const std_msgs::Int32::ConstPtr &msg)
     }
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv) //主控制函数
 {
     string str = getenv("ZJUDANCER_ROBOTID");
     ros::init(argc, argv, "motion_hub");
     /////////////////////////////////////////////////////////////////////////////////////////////////
     ros::NodeHandle n;
     ros::Publisher ServoInfo_pub = n.advertise<std_msgs::Float64MultiArray>("ServoInfo", 5);           //发布舵机角度信息
-    ros::Subscriber MotionInfo_sub = n.subscribe("dmotion_" + str + "/MotionInfo", 3, MotionCallBack); //订阅MotionInfo得到跌倒信息和yaw信息
-    ros::Subscriber VisionInfo_sub = n.subscribe("dvision_" + str + "/VisionInfo", 3, VisionCallBack); //订阅VisionInfo得到视觉信息
-    ros::Subscriber ActionInfo_sub = n.subscribe("dbehavior_" + str + "/ActionCommand", 1, ActionCallBack); //订阅ActionCommand得到运动控制信息
+    ros::Subscriber MotionInfo_sub = n.subscribe("dmotion_" + str + "/MotionInfo", 3, MotionCallBack); //订阅MotionInfo得到跌倒信息和yaw角度信息
+    ros::Subscriber VisionInfo_sub = n.subscribe("dvision_" + str + "/VisionInfo", 3, VisionCallBack); //订阅VisionInfo得到vision视觉信息
+    ros::Subscriber ActionInfo_sub = n.subscribe("dbehavior_" + str + "/ActionCommand", 1, ActionCallBack); //订阅ActionCommand得到command运动控制信息
     ros::Subscriber TuningChannel_sub = n.subscribe("TuningCommand", 1, TuningCallBack); //订阅TuningCommand
-    ros::Subscriber joy_sub = n.subscribe("joy", 1, joyCallBack);
-    ros::Subscriber tele_sub = n.subscribe("teleop", 1, teleCallBack);
+    ros::Subscriber joy_sub = n.subscribe("joy", 1, joyCallBack); //订阅joy
+    ros::Subscriber tele_sub = n.subscribe("teleop", 1, teleCallBack); //订阅teleop
     parameters.init(&n);
     ros::Rate loop_rate(1000.0 / parameters.three_interpolation_param.DEFAULT_POINT_INTERVAL);
     parameters.status_code = (StatusCode)400;
