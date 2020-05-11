@@ -12,11 +12,16 @@ roslaunch dancer_urdf_model display.launch
 ```
 
 
-将dancer_urdf_model中worlds中的car_world.jpg复制进/usr/share/gazebo-9/media/material/textures中，
+将dancer_urdf_model中worlds中的car_world.jpg复制进textures中，
+```
+sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.jpg /usr/share/gazebo-9/media/materials/textures
+```
 
 
-将dancer_urdf_model中worlds中的gazebo.material复制进/usr/share/gazebo-9/media/material/scripts中。
-
+将dancer_urdf_model中worlds中的gazebo.material复制进scripts中。
+```
+sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.material /usr/share/gazebo-9/media/materials/scripts
+```
 
 ```
 roslaunch dancer_urdf_model gazebo.launch
