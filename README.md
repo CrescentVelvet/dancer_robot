@@ -21,6 +21,7 @@ sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dance
 sudo gedit ~/.ignition/fuel/config.yaml
 ```
 将 url : https://api.ignitionfuel.org 注释掉
+
 添加 url: https://api.ignitionrobotics.org
 
 修改climb参数
@@ -47,43 +48,24 @@ roslaunch dmotion main.launch
 
 键盘控制：
 
-        'q'         # body_head
-
-        'w'         # body_head2
-
-        'a'         # arm_left
-
-        's'         # hand_left
-
-        'z'         # arm_right
-
-        'x'         # hand_right
-
-
-        'e'         # body_hip_left
-
-        'r'         # body_hip2_left
-
-        'd'         # leg_left
-
-        'f'         # leg2_left
-
-        'c'         # leg3_left
-
-        'v'         # leg4_left
-
-
-        't'         # body_hip_right
-
-        'y'         # body_hip2_right
-
-        'g'         # leg_right
-
-        'h'         # leg2_right
-
-        'b'         # leg3_right
-
-        'n'         # leg4_right
+​       'q' 	# body_head
+​       'w'	# body_head2
+​       'a'	# arm_left
+​       's'	# hand_left
+​       'z'	# arm_right
+​       'x'	# hand_right
+​       'e'	# body_hip_left
+​       'r'	# body_hip2_left
+​       'd'	# leg_left
+​       'f'	# leg2_left
+​       'c'	# leg3_left
+​       'v'	# leg4_left
+​       't'	# body_hip_right
+​       'y'	# body_hip2_right
+​       'g'	# leg_right
+​       'h'	# leg2_right
+​       'b'	# leg3_right
+​       'n'	# leg4_right
 
 # 可能报错
 ```

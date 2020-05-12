@@ -50,7 +50,7 @@
           <material>
             <script>
               <uri>file://media/materials/scripts/dancer_world.material</uri>
-              <name>Gazebo/car_world</name>
+              <name>Gazebo/dancer_world</name>
               <!--<uri>model://dancer_world_model/worlds/dancer_world.material</uri>
               <name>Gazebo/dancer_world</name>-->
             </script>
