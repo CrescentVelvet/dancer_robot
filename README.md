@@ -6,25 +6,43 @@ cd ~/catkin_ws/src
 catkin_make
 source devel/setup.bash
 ```
+在.bashrc中添加source /home/zjunlict/catkin_ws/devel/setup.bash
 
+将dancer_urdf_model/worlds中的car_world.jpg复制进textures中，
+```
+sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.jpg /usr/share/gazebo-9/media/materials/textures
+```
+将dancer_urdf_model/worlds中的gazebo.material复制进scripts中。
+```
+sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.material /usr/share/gazebo-9/media/materials/scripts
+```
+报错[Err] [REST.cc:205] Error in REST request
+```
+sudo gedit ~/.ignition/fuel/config.yaml
+```
+将 url : https://api.ignitionfuel.org 注释掉
+添加 url: https://api.ignitionrobotics.org
+
+修改climb参数
+```
+sudo gedit /home/zjunlict/catkin_ws/src/dancer_robot/dancer-motion/config/parameters/motion_hub_param.yaml
+```
+修改文件中路径为自己的路径
+
+# 运行模型
+RVIZ查看模型
 ```
 roslaunch dancer_urdf_model display.launch
 ```
 
-
-将dancer_urdf_model中worlds中的car_world.jpg复制进textures中，
-```
-sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.jpg /usr/share/gazebo-9/media/materials/textures
-```
-
-
-将dancer_urdf_model中worlds中的gazebo.material复制进scripts中。
-```
-sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.material /usr/share/gazebo-9/media/materials/scripts
-```
-
+gazebo进行仿真
 ```
 roslaunch dancer_urdf_model gazebo.launch
+```
+
+motion运动控制
+```
+roslaunch dmotion main.launch
 ```
 
 键盘控制：
