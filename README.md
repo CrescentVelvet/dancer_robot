@@ -1,6 +1,6 @@
 # **dancer_robot**
 The control of robot
-# 环境配置
+### 环境配置
 ```
 cd ~/catkin_ws/src
 catkin_make
@@ -30,7 +30,7 @@ sudo gedit /home/zjunlict/catkin_ws/src/dancer_robot/dancer-motion/config/parame
 ```
 修改文件中路径为自己的路径
 
-# 运行模型
+### 运行模型
 RVIZ查看模型
 ```
 roslaunch dancer_urdf_model display.launch
@@ -67,7 +67,21 @@ roslaunch dmotion main.launch
 ​       'b'	# leg3_right
 ​       'n'	# leg4_right
 
-# 可能报错
+### 效果图片
+
+<img width=850 src="https://img-blog.csdnimg.cn/2020122515203981.png" alt="gazebo仿真-蓝天白云"/>
+
+
+gazebo仿真-蓝天白云
+
+
+<img width=850 src="https://img-blog.csdnimg.cn/20201225152328705.png" alt="gazebo仿真-绿茵球场"/>
+
+
+gazebo仿真-绿茵球场
+
+
+### 可能报错
 ```
 sudo apt-get install ros-melodic-effort-controllers
 sudo apt-get install ros-melodic-joint-state-publisher-gui
@@ -77,7 +91,7 @@ sudo apt-get install ros-melodic-fake-localization
 sudo apt-get install ros-melodic-pr2-controller-manager
 killall gzserver
 ```
-# 代码思路
+### 代码思路
 
 总的思路是步态代码作为一个节点单开，发送内容为舵机值的topic，周期为10ms
 
@@ -86,6 +100,3 @@ killall gzserver
 运行步态代码时运行里面的motion_hub.cpp，用来调度所有的动作，目前我们就是爬起接走路
 
 仿真这边代码要修改一下，变成订阅motion的话题得到舵机值作为line_data，后面的计算方法不用变
-
-
-
