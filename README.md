@@ -1,5 +1,88 @@
 # **dancer_robot**
 The control of robot
+### ros安装
+添加镜像源
+```
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+添加秘钥
+```
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+```
+更新
+```
+sudo apt-get update
+```
+安装melodic版本(对应ubuntu18)
+```
+sudo apt-get install ros-melodic-desktop-full
+```
+初始化rosdep
+```
+sudo apt install python3-catkin-pkg
+sudo apt install python3-rospkg
+sudo apt install python3-rosdep-modules
+sudo apt install python3-rosdep
+sudo rosdep init
+sudo gedit /etc/hosts
+```
+最后一行添加
+```
+185.199.111.133 http://raw.githubusercontent.com
+185.199.109.133 http://raw.githubusercontent.com
+185.199.110.133 http://raw.githubusercontent.com
+185.199.108.133 http://raw.githubusercontent.com
+0.0.0.0 http://raw.githubusercontent.com
+```
+修改list
+```
+sudo gedit /etc/ros/rosdep/sources.list.d/20-default.list
+```
+全选
+```
+# os-specific listings first
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+# generic
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
+# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+```
+修改为
+```
+# os-specific listings first
+#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+yaml file:///etc/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+# generic
+#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+#gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
+yaml file:///etc/ros/rosdistro/master/rosdep/base.yaml
+yaml file:///etc/ros/rosdistro/master/rosdep/python.yaml
+yaml file:///etc/ros/rosdistro/master/rosdep/ruby.yaml
+gbpdistro file:///etc/ros/rosdistro/master/releases/fuerte.yaml fuerte
+# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+```
+直接下载list里需要的文件,复制到/etc/ros目录下
+```
+sudo cp -r /home/zjunlict-vision-1/Desktop/dancer_robot/rosdistro /etc/ros
+```
+再更新rosdep
+```
+sudo apt update
+rosdep update
+```
+设置环境变量
+```
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+安装rosinstall
+```
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+```
 ### 环境配置
 ```
 cd ~/catkin_ws/src
@@ -35,17 +118,14 @@ RVIZ查看模型
 ```
 roslaunch dancer_urdf_model display.launch
 ```
-
 gazebo进行仿真
 ```
 roslaunch dancer_urdf_model gazebo.launch
 ```
-
 motion运动控制
 ```
 roslaunch dmotion main.launch
 ```
-
 键盘控制：
 
 ​       'q' 	# body_head
@@ -66,7 +146,6 @@ roslaunch dmotion main.launch
 ​       'h'	# leg2_right
 ​       'b'	# leg3_right
 ​       'n'	# leg4_right
-
 ### 效果图片
 
 <img width=850 src="https://img-blog.csdnimg.cn/2020122515203981.png" alt="gazebo仿真-蓝天白云"/>
