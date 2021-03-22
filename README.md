@@ -24,10 +24,14 @@ sudo apt install python3-rospkg
 sudo apt install python3-rosdep-modules
 sudo apt install python3-rosdep
 sudo rosdep init
+```
+rosdep更新报错
+```
 sudo gedit /etc/hosts
 ```
 最后一行添加
 ```
+151.101.84.133  http://raw.githubusercontent.com
 185.199.111.133 http://raw.githubusercontent.com
 185.199.109.133 http://raw.githubusercontent.com
 185.199.110.133 http://raw.githubusercontent.com
@@ -38,7 +42,7 @@ sudo gedit /etc/hosts
 ```
 sudo gedit /etc/ros/rosdep/sources.list.d/20-default.list
 ```
-全选
+将全部内容
 ```
 # os-specific listings first
 yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
@@ -47,7 +51,6 @@ yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
 yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
 yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
 gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
-# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
 ```
 修改为
 ```
@@ -63,7 +66,6 @@ yaml file:///etc/ros/rosdistro/master/rosdep/base.yaml
 yaml file:///etc/ros/rosdistro/master/rosdep/python.yaml
 yaml file:///etc/ros/rosdistro/master/rosdep/ruby.yaml
 gbpdistro file:///etc/ros/rosdistro/master/releases/fuerte.yaml fuerte
-# newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
 ```
 直接下载list里需要的文件,复制到/etc/ros目录下
 ```
@@ -78,6 +80,50 @@ rosdep update
 ```
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
+```
+报错shopt,查看当前shell类型
+```
+echo $SHELL
+```
+是zsh,设置环境变量
+```
+echo "source /opt/ros/melodic/setup.zsh" >> ~/.zshrc
+source ~/.zshrc
+```
+出错找不到文件setup.bash,随便安装个包
+```
+sudo apt-get install ros-melodic-turtlesim
+gedit ~/.zshrc
+source ~/.zshrc
+rosdep update
+```
+报错找不到distribution.yaml,继续修改list
+```
+sudo gedit /etc/ros/rosdep/sources.list.d/20-default.list
+```
+在最后一行添加
+```
+yaml file:///etc/ros/rosdistro/master/kinetic/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/melodic/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/foxy/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/index-v4.yaml
+```
+又报错找不到fuerte.yaml,修改域名
+```
+sudo gedit /etc/resolv.conf
+```
+在nameserver 127.0.0.53之后添加
+```
+nameserver 8.8.8.8 #google域名服务器
+nameserver 8.8.4.4 #google域名服务器
+```
+还是报错找不到index-v4.yaml
+```
+???
+```
+运行
+```
+rosdep update
 ```
 安装rosinstall
 ```
