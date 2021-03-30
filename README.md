@@ -31,6 +31,7 @@ sudo gedit /etc/hosts
 ```
 最后一行添加
 ```
+151.101.76.133  http://raw.githubusercontent.com
 151.101.84.133  http://raw.githubusercontent.com
 185.199.111.133 http://raw.githubusercontent.com
 185.199.109.133 http://raw.githubusercontent.com
@@ -55,13 +56,8 @@ gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte
 修改为
 ```
 # os-specific listings first
-#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
 yaml file:///etc/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
 # generic
-#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
-#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
-#yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
-#gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
 yaml file:///etc/ros/rosdistro/master/rosdep/base.yaml
 yaml file:///etc/ros/rosdistro/master/rosdep/python.yaml
 yaml file:///etc/ros/rosdistro/master/rosdep/ruby.yaml
@@ -97,16 +93,10 @@ gedit ~/.zshrc
 source ~/.zshrc
 rosdep update
 ```
-报错找不到distribution.yaml,继续修改list
-```
-sudo gedit /etc/ros/rosdep/sources.list.d/20-default.list
-```
-在最后一行添加
+报错找不到distribution.yaml,继续修改list,添加各种yaml文件的地址
 ```
 yaml file:///etc/ros/rosdistro/master/kinetic/distribution.yaml
 yaml file:///etc/ros/rosdistro/master/melodic/distribution.yaml
-yaml file:///etc/ros/rosdistro/master/foxy/distribution.yaml
-yaml file:///etc/ros/rosdistro/master/index-v4.yaml
 ```
 又报错找不到fuerte.yaml,修改域名
 ```
@@ -117,11 +107,25 @@ sudo gedit /etc/resolv.conf
 nameserver 8.8.8.8 #google域名服务器
 nameserver 8.8.4.4 #google域名服务器
 ```
-还是报错找不到index-v4.yaml
+还是报错找不到index-v4.yaml,添加各种文件路径,最终得到list如下
 ```
-???
+# os-specific listings first
+yaml file:///etc/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
+# generic
+yaml file:///etc/ros/rosdistro/master/rosdep/base.yaml
+yaml file:///etc/ros/rosdistro/master/rosdep/python.yaml
+yaml file:///etc/ros/rosdistro/master/rosdep/ruby.yaml
+yaml file:///etc/ros/rosdistro/master/rosdep/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/dashing/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/eloquent/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/foxy/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/kinetic/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/melodic/distribution.yaml
+yaml file:///etc/ros/rosdistro/master/noetic/distribution.yaml
+gbpdistro file:///etc/ros/rosdistro/master/releases/fuerte.yaml fuerte
+yaml file:///etc/ros/rosdistro/master/index-v4.yaml
 ```
-运行
+运行rosdep
 ```
 rosdep update
 ```
@@ -129,36 +133,119 @@ rosdep update
 ```
 sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
 ```
-### 环境配置
+如果rosdep还是失败,就把上述过程再执行一遍,反复rosdep update
+```
+sudo apt-get install ros-melodic-turtlesim
+echo "source /opt/ros/melodic/setup.zsh" >> ~/.zshrc
+gedit ~/.zshrc
+source ~/.zshrc
+sudo apt install python3-catkin-pkg
+sudo apt install python3-rospkg
+sudo apt install python3-rosdep-modules
+sudo apt install python3-rosdep
+rosdep update
+```
+反反复复终于搞定
+### 环境初始化
 ```
 cd ~/catkin_ws/src
+cd ..
 catkin_make
-source devel/setup.bash
+source ~/catkin_ws/devel/setup.bash
+source ~/catkin_ws/devel/setup.zsh
 ```
+报错zsh: command not found: catkin_make
+
+原因是/opt/ros/melodic/setup.zsh又不见了
+```
+sudo apt-get install ros-melodic-turtlesim
+gedit ~/.zshrc
+export PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+source /opt/ros/melodic/setup.zsh
+source ~/.zshrc
+```
+报错zsh: command not found: roslaunch
+
+原因不是环境变量，而是安装失败
+```
+cd /opt/ros/melodic/bin/
+ls
+```
+没有看到roscore，重新安装
+```
+sudo apt-get install ros-melodic-desktop-full
+```
+如果安装了如下库，则roscore就都消失了，所以不要装
+```
+sudo apt install python3-catkin-pkg
+sudo apt install python3-rospkg
+sudo apt install python3-rosdep-modules
+sudo apt install python3-rosdep
+```
+报错No module named 'defusedxml'，因为指向python3而不是2
+```
+ls -al /usr/bin/python
+得到lrwxrwxrwx 1 root root 9 12月 16  2019 /usr/bin/python -> python3.6
+sudo rm -rf /usr/bin/python
+sudo ln -s /usr/bin/python2.7 /usr/bin/python
+ls -al /usr/bin/python
+得到lrwxrwxrwx 1 root root 18 3月  30 23:31 /usr/bin/python -> /usr/bin/python2.7
+```
+运行核心，成功
+```
+roscore
+```
+运行roslaunch，报错找不到gazebo.launch，
+
+### 环境配置
 在.bashrc中添加source /home/zjunlict/catkin_ws/devel/setup.bash
+
+在.zshrc中添加source /home/zjunlict/catkin_ws/devel/setup.zsh
 
 将dancer_urdf_model/worlds中的car_world.jpg复制进textures中，
 ```
+笔记本
 sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.jpg /usr/share/gazebo-9/media/materials/textures
+or
+主机
+sudo cp /home/zjunlict-vision-1/Desktop/dancer_robot/dancer_urdf_model/worlds/dancer_world.jpg /usr/share/gazebo-9/media/materials/textures
 ```
 将dancer_urdf_model/worlds中的gazebo.material复制进scripts中。
 ```
+笔记本
 sudo cp /home/zjunlict/catkin_ws/src/dancer_robot/dancer_urdf_model/worlds/dancer_world.material /usr/share/gazebo-9/media/materials/scripts
+or
+主机
+sudo cp /home/zjunlict-vision-1/Desktop/dancer_robot/dancer_urdf_model/worlds/dancer_world.material /usr/share/gazebo-9/media/materials/scripts
 ```
 报错[Err] [REST.cc:205] Error in REST request
 ```
 sudo gedit ~/.ignition/fuel/config.yaml
 ```
-将 url : https://api.ignitionfuel.org 注释掉
-
-添加 url: https://api.ignitionrobotics.org
-
+将
+```
+url : https://api.ignitionfuel.org
+```
+改为
+```
+url: https://api.ignitionrobotics.org
+```
 修改climb参数
 ```
+笔记本
 sudo gedit /home/zjunlict/catkin_ws/src/dancer_robot/dancer-motion/config/parameters/motion_hub_param.yaml
+or
+主机
+sudo gedit /home/zjunlict-vision-1/Desktop/dancer_robot/dancer-motion/config/parameters/motion_hub_param.yaml
 ```
 修改文件中路径为自己的路径
-
+```
+笔记本
+right_kick_files: "/home/ruby/catkin_ws/src/dancer_robot/dancer-motion/config/"
+or
+主机
+right_kick_files: "/home/zjunlict-vision-1/catkin_ws/src/dancer_robot/dancer-motion/config/"
+```
 ### 运行模型
 RVIZ查看模型
 ```
@@ -173,25 +260,26 @@ motion运动控制
 roslaunch dmotion main.launch
 ```
 键盘控制：
-
-​       'q' 	# body_head
-​       'w'	# body_head2
-​       'a'	# arm_left
-​       's'	# hand_left
-​       'z'	# arm_right
-​       'x'	# hand_right
-​       'e'	# body_hip_left
-​       'r'	# body_hip2_left
-​       'd'	# leg_left
-​       'f'	# leg2_left
-​       'c'	# leg3_left
-​       'v'	# leg4_left
-​       't'	# body_hip_right
-​       'y'	# body_hip2_right
-​       'g'	# leg_right
-​       'h'	# leg2_right
-​       'b'	# leg3_right
-​       'n'	# leg4_right
+```
+       'q' 	# body_head
+       'w'	# body_head2
+       'a'	# arm_left
+       's'	# hand_left
+       'z'	# arm_right
+       'x'	# hand_right
+       'e'	# body_hip_left
+       'r'	# body_hip2_left
+       'd'	# leg_left
+       'f'	# leg2_left
+       'c'	# leg3_left
+       'v'	# leg4_left
+       't'	# body_hip_right
+       'y'	# body_hip2_right
+       'g'	# leg_right
+       'h'	# leg2_right
+       'b'	# leg3_right
+       'n'	# leg4_right
+```
 ### 效果图片
 
 <img width=850 src="https://img-blog.csdnimg.cn/2020122515203981.png" alt="gazebo仿真-蓝天白云"/>
