@@ -17,6 +17,10 @@ sudo apt-get update
 ```
 sudo apt-get install ros-melodic-desktop-full
 ```
+安装rosinstall
+```
+sudo apt-get install python-rosinstall
+```
 初始化rosdep
 ```
 sudo apt install python3-catkin-pkg
@@ -145,7 +149,12 @@ sudo apt install python3-rosdep-modules
 sudo apt install python3-rosdep
 rosdep update
 ```
-反反复复终于搞定
+反反复复终于搞定，跑个小海龟
+```
+roscore
+rosrun turtlrsim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+```
 ### 环境初始化
 ```
 cd ~/catkin_ws/src
@@ -195,7 +204,19 @@ ls -al /usr/bin/python
 ```
 roscore
 ```
-运行roslaunch，报错找不到gazebo.launch，
+运行roslaunch，报错找不到文件，因为路径不在catkin_ws下
+```
+gedit ~/.zshrc
+添加
+source /home/zjunlict-vision-1/Desktop/dancer_robot/dancer_urdf_model/launch
+source ~/.zshrc
+```
+重启终端
+```
+roscd dancer_urdf_model
+source /opt/ros/melodic/setup.zsh
+source catkin_ws/devel/setup.zsh
+```
 
 ### 环境配置
 在.bashrc中添加source /home/zjunlict/catkin_ws/devel/setup.bash
@@ -293,7 +314,6 @@ gazebo仿真-蓝天白云
 
 gazebo仿真-绿茵球场
 
-
 ### 可能报错
 ```
 sudo apt-get install ros-melodic-effort-controllers
@@ -313,3 +333,7 @@ killall gzserver
 运行步态代码时运行里面的motion_hub.cpp，用来调度所有的动作，目前我们就是爬起接走路
 
 仿真这边代码要修改一下，变成订阅motion的话题得到舵机值作为line_data，后面的计算方法不用变
+### dancer_motion代码阅读
+walk_test.cpp里225行调用步态函数PendulumWalk.cpp
+
+PendulumWalk.cpp里调用单步函数OneFootLanding.cpp
